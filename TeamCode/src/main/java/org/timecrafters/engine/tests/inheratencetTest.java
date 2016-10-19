@@ -17,12 +17,12 @@ public class inheratencetTest extends caseBase {
     public void init() {
         System.out.println("PROGRAM : WORKING");
         Log.i("PROGRAM", "WORKING");
-        isFinished = true;
     }
 
     @Override
     public void run(){
         Log.i(TAG,"RUNING");
+        setFinished(true);
 
     }
 

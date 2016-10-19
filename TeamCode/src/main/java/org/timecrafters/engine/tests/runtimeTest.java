@@ -4,6 +4,7 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
 import org.timecrafters.engine.caseBase;
 import org.timecrafters.engine.engine;
+import org.timecrafters.engine.finishedState;
 
 /**
  * Created by t420 on 9/29/2016.
@@ -20,6 +21,7 @@ public class runtimeTest extends engine {
     @Override
     public void setProcesses() {
         processes[0] = new inheratencetTest();
+        processes[1] = new inheratencetTest();
 
     }
 }

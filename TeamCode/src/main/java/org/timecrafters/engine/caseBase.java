@@ -8,9 +8,13 @@ import static java.lang.reflect.Modifier.STATIC;
 
 
 public abstract class caseBase extends robotPrefs implements Runnable  {
-    public boolean isFinished = false;
+    public volatile boolean isFinished = false;
     public byte layer = 0;
     public static String TAG = "PROGRAM.STATE";
 
     public abstract void init();
+
+    public void setFinished(boolean value){
+        isFinished = value;
+    }
 }

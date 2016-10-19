@@ -1,5 +1,6 @@
 package org.timecrafters.engine;
 
+import android.nfc.Tag;
 import android.util.Log;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
@@ -17,26 +18,42 @@ public abstract class engine extends OpMode {
 
     public caseBase[] processes = new caseBase[100];
 
-    public static String TAG = "PROGRAM.ENGINE: ";
+    private static String TAG = "PROGRAM.ENGINE: ";
     private int x = 0;
     private int y = 0;
     private Thread t;
     private caseBase currentProcess = null;
+    private boolean machineFinished = false;
 
-    public void init(){
+    public void init() {
         setProcesses();
     }
-    public void loop(){
 
-        if(currentProcess == processes[x]){
-            //check to see if process is done
+    public void loop() {
 
-        }else{
-            //set next state.
-            t = new Thread(processes[x]);
-            t.start();
-            currentProcess = processes[x];
-            Log.i(TAG,"Started State");
+        if (currentProcess == processes[x]) {
+
+            if (processes[x].isFinished) {
+                Log.i(TAG, " FINISHED OP");
+
+                x++;
+            } else {
+                Log.i(TAG, "RUNNING");
+
+            }
+
+        } else {
+
+            if (processes[x] != null) {
+                //set next state.
+                t = new Thread(processes[x]);
+                t.start();
+                currentProcess = processes[x];
+                Log.i(TAG, "Started State");
+            } else if (processes[x] == null && !machineFinished) {
+                Log.i(TAG, "MACHINE FINISHED");
+                machineFinished = true;
+            }
         }
 
     }
