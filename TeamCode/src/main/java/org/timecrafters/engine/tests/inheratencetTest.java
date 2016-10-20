@@ -1,5 +1,6 @@
 package org.timecrafters.engine.tests;
 
+import android.text.format.DateFormat;
 import android.util.Log;
 
 import org.timecrafters.engine.caseBase;
@@ -21,7 +22,7 @@ public class inheratencetTest extends caseBase {
 
     @Override
     public void run(){
-        Log.i(TAG,"RUNING");
+        Log.i(TAG,"Test Finished");
         setFinished(true);
 
     }

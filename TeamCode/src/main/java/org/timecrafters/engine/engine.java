@@ -16,42 +16,57 @@ import java.lang.reflect.Array;
 
 public abstract class engine extends OpMode {
 
-    public caseBase[] processes = new caseBase[100];
+    public caseBase[][] processes = new caseBase[100][100];
+    private Thread[] threads = new Thread[100];
+    private int threadX = 0;
+
 
     private static String TAG = "PROGRAM.ENGINE: ";
     private int x = 0;
-    private int y = 0;
-    private Thread t;
-    private caseBase currentProcess = null;
+    private int currentProcess = 0;
     private boolean machineFinished = false;
+    private boolean opFininished = true;
 
     public void init() {
         setProcesses();
     }
 
     public void loop() {
+        if (!opFininished && !machineFinished) {
+            for (int y = 0; y < processes.length; y++) {
 
-        if (currentProcess == processes[x]) {
-
-            if (processes[x].isFinished) {
-                Log.i(TAG, " FINISHED OP");
-
+                if (processes[x][y] != null) {
+                    if (processes[x][y].isFinished) {
+                        opFininished = true;
+                        Log.i(TAG, "FINISHED OP : " + "[" + Integer.toString(x) + "]" + "[" + Integer.toString(y) + "]");
+                    } else {
+                        opFininished = false;
+                        break;
+                    }
+                } else {
+                    break;
+                }
+            }
+            if (opFininished) {
                 x++;
-            } else {
-                Log.i(TAG, "RUNNING");
-
             }
 
         } else {
-
-            if (processes[x] != null) {
+            if (processes[x][0] != null) {
                 //set next state.
-                t = new Thread(processes[x]);
-                t.start();
-                currentProcess = processes[x];
-                Log.i(TAG, "Started State");
-            } else if (processes[x] == null && !machineFinished) {
-                Log.i(TAG, "MACHINE FINISHED");
+                for (int i = 0; i < processes.length; i++) {
+                    threads[i] = new Thread(processes[x][i]);
+                    threads[i].start();
+                }
+                opFininished = false;
+
+
+                currentProcess = x;
+                Log.i(TAG, "Started State : " + Integer.toString(x));
+
+
+            } else if (processes[x][0] == null && !machineFinished) {
+                Log.i(TAG, "MACHINE TERMINATED");
                 machineFinished = true;
             }
         }

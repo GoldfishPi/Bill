@@ -18,7 +18,7 @@ public class finishedState extends caseBase {
     public void run(){
         if(!isFinished){
             isFinished = true;
-            Log.i(TAG,"MACHINE FINISHED");
+            Log.i(TAG,"test FINISHED");
         }
     }
 }
