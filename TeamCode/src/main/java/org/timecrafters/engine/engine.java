@@ -4,6 +4,7 @@ import android.nfc.Tag;
 import android.util.Log;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
+import com.qualcomm.robotcore.hardware.ColorSensor;
 
 import org.timecrafters.engine.tests.inheratencetTest;
 
@@ -27,8 +28,18 @@ public abstract class engine extends OpMode {
     private boolean machineFinished = false;
     private boolean opFininished = true;
 
+    ColorSensor colorSensor;
+
     public void init() {
         setProcesses();
+        for(int i = 0;i < processes.length;i++) {
+            for (int y = 0; y < processes.length; y++) {
+                if(processes[i][y] != null) {
+                    processes[i][y].init();
+                    Log.i(TAG, "INIT" + "[" + Integer.toString(i) + "]" + "[" + Integer.toString(y) + "]");
+                }
+            }
+        }
     }
 
     public void loop() {
@@ -71,6 +82,17 @@ public abstract class engine extends OpMode {
             }
         }
 
+    }
+
+    @Override
+    public void stop(){
+        for(int i = 0;i < processes.length;i++) {
+            for (int y = 0; y < processes.length; y++) {
+                if(processes[i][y] != null) {
+                    processes[i][y].isFinished = true;
+                }
+            }
+        }
     }
 
     public abstract void setProcesses();

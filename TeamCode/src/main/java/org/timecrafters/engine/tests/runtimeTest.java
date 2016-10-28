@@ -17,15 +17,12 @@ public class runtimeTest extends engine {
     public runtimeTest(){
         processes = this.processes;
     }
-    private inheratencetTest it = new inheratencetTest();
+    private inheratencetTest it = new inheratencetTest(this);
 
     @Override
     public void setProcesses() {
-
-        processes[0][0] = new inheratencetTest();
-        processes[0][1] = new inheratencetTest();
-        processes[1][0] = new inheratencetTest();
-
+        processes[0][0] =new inheratencetTest(this);
+        processes[0][1] = new inheratencetTest(this);
 
     }
 }

@@ -11,14 +11,15 @@ public class finishedState extends caseBase {
     boolean isFinished = false;
     @Override
     public void init(){
-
+        colorSensor = opMode.hardwareMap.colorSensor.get("colorSensor");
     }
 
     @Override
-    public void run(){
+    public void exec(){
         if(!isFinished){
             isFinished = true;
             Log.i(TAG,"test FINISHED");
+
         }
     }
 }

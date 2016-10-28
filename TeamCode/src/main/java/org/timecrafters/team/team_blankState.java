@@ -15,7 +15,7 @@ public class team_blankState extends caseBase {
     }
 
     @Override
-    public void run(){
-        isFinished = true;
+    public void exec(){
+        setFinished(true);
     }
 }
