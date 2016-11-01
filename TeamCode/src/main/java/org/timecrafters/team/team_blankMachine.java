@@ -11,7 +11,8 @@ import org.timecrafters.engine.Engine;
 public class team_blankMachine extends Engine {
     @Override
     public void setProcesses() {
-        //processes[0][0] = new team_blankState();
+
+        processes[0][0] = new team_blankState(this);
         //processes[1] = state;
         //processes[2] = state;
     }

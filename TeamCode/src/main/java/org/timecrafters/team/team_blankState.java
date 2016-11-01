@@ -1,5 +1,7 @@
 package org.timecrafters.team;
 
+import com.qualcomm.robotcore.eventloop.opmode.OpMode;
+
 import org.timecrafters.engine.State;
 
 /**
@@ -8,6 +10,9 @@ import org.timecrafters.engine.State;
 
 public class team_blankState extends State {
 
+    public team_blankState(OpMode opmode){
+        this.opMode = opmode;
+    }
 
     @Override
     public void init(){
