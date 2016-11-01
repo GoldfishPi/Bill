@@ -1,23 +1,18 @@
 package org.timecrafters.engine;
 
-import android.nfc.Tag;
 import android.util.Log;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.ColorSensor;
-
-import org.timecrafters.engine.tests.inheratencetTest;
-
-import java.lang.reflect.Array;
 
 /**
  * Created by t420 on 9/29/2016.
  * First sucess ful test was 5:00 6 thur oct 2016
  */
 
-public abstract class engine extends OpMode {
+public abstract class Engine extends OpMode {
 
-    public caseBase[][] processes = new caseBase[100][100];
+    public State[][] processes = new State[100][100];
     private Thread[] threads = new Thread[100];
     private int threadX = 0;
 

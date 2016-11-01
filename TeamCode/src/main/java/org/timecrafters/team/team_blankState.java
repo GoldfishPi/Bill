@@ -1,12 +1,12 @@
 package org.timecrafters.team;
 
-import org.timecrafters.engine.caseBase;
+import org.timecrafters.engine.State;
 
 /**
  * Created by t420 on 10/18/2016.
  */
 
-public class team_blankState extends caseBase {
+public class team_blankState extends State {
 
 
     @Override
