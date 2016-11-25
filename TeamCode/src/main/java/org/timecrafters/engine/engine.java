@@ -9,8 +9,21 @@ import com.qualcomm.robotcore.hardware.ColorSensor;
  * Created by t420 on 9/29/2016.
  * First sucess ful test was 5:00 6 thur oct 2016
  */
+/*
 
-public abstract class Engine extends OpMode {
+::::::::: ::::::::::: :::        :::
+:+:    :+:    :+:     :+:        :+:
++:+    +:+    +:+     +:+        +:+
++#++:++#+     +#+     +#+        +#+
++#+    +#+    +#+     +#+        +#+
+#+#    #+#    #+#     #+#        #+#
+######### ########### ########## ##########
+
+ */
+//metron
+    //multi engineered threading reconizing organizing
+
+public abstract class Engine extends RobotPrefs {
 
     public State[][] processes = new State[100][100];
     private Thread[] threads = new Thread[100];
@@ -23,7 +36,6 @@ public abstract class Engine extends OpMode {
     private boolean machineFinished = false;
     private boolean opFininished = true;
 
-    ColorSensor colorSensor;
 
     public void init() {
         setProcesses();
@@ -74,6 +86,7 @@ public abstract class Engine extends OpMode {
             } else if (processes[x][0] == null && !machineFinished) {
                 Log.i(TAG, "MACHINE TERMINATED");
                 machineFinished = true;
+                stop();
             }
         }
 

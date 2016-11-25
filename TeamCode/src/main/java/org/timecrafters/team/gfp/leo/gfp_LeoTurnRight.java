@@ -1,5 +1,6 @@
 package org.timecrafters.team.gfp.leo;
 
+import org.timecrafters.engine.Engine;
 import org.timecrafters.engine.State;
 
 /**
@@ -15,6 +16,10 @@ public class gfp_LeoTurnRight extends State {
     int rightWheel;
     int leftWheel;
 
+    public gfp_LeoTurnRight(Engine engine){
+        this.engine = engine;
+    }
+
     @Override
     public void init(){
 
@@ -23,22 +28,22 @@ public class gfp_LeoTurnRight extends State {
     public void exec(){
 
         if(!firstRun){
-            rightWheel = dcBackRight.getCurrentPosition();
-            leftWheel = dcBackLeft.getCurrentPosition();
+            rightWheel = engine.dcBackRight.getCurrentPosition();
+            leftWheel = engine.dcBackLeft.getCurrentPosition();
             firstRun = true;
         }
 
-        if(dcBackRight.getCurrentPosition() > rightWheel + 700){
-            dcBackRight.setPower(0.3);
+        if(engine.dcBackRight.getCurrentPosition() > rightWheel + 700){
+            engine.dcBackRight.setPower(0.3);
         }else{
-            dcBackRight.setPower(0);
+            engine.dcBackRight.setPower(0);
             rightFinished = true;
         }
 
-        if(dcBackLeft.getCurrentPosition() > leftWheel + 700){
-            dcBackLeft.setPower(0.3);
+        if(engine.dcBackLeft.getCurrentPosition() > leftWheel + 700){
+            engine.dcBackLeft.setPower(0.3);
         }else{
-            dcBackLeft.setPower(0);
+            engine.dcBackLeft.setPower(0);
             leftFinished = true;
         }
 

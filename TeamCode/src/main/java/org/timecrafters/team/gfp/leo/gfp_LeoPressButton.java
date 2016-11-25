@@ -1,5 +1,6 @@
 package org.timecrafters.team.gfp.leo;
 
+import org.timecrafters.engine.Engine;
 import org.timecrafters.engine.State;
 
 /**
@@ -11,6 +12,10 @@ public class gfp_LeoPressButton extends State {
     private boolean start = false;
     private int startingPresserPos;
 
+    public gfp_LeoPressButton(Engine engine){
+        this.engine = engine;
+    }
+
     @Override
     public void init(){
 
@@ -18,13 +23,13 @@ public class gfp_LeoPressButton extends State {
 
     public void exec(){
         if(!start){
-            startingPresserPos = dcPresser.getCurrentPosition();
+            startingPresserPos = engine.dcPresser.getCurrentPosition();
             start = true;
         }else{
-            if(dcPresser.getCurrentPosition() < startingPresserPos + 500){
-                dcPresser.setPower(0.2);
+            if(engine.dcPresser.getCurrentPosition() < startingPresserPos + 500){
+                engine.dcPresser.setPower(0.2);
             }else{
-                dcPresser.setPower(0);
+                engine.dcPresser.setPower(0);
                 setFinished(true);
             }
         }

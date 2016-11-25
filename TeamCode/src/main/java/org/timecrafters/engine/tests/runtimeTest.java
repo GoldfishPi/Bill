@@ -20,7 +20,7 @@ public class RuntimeTest extends Engine {
     @Override
     public void setProcesses() {
         processes[0][0] = new InheratencetTest(this);
-        processes[0][1] = new TouchSensorTest(this);
+        //processes[0][1] = new TouchSensorTest(this);
 
     }
 }
