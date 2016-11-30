@@ -1,5 +1,7 @@
 package org.timecrafters.team.gfp.leo;
 
+import android.util.Log;
+
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DistanceSensor;
@@ -16,9 +18,9 @@ public class gfp_LeoDrive extends State {
 
     State shouldStop;
     double speed;
-    DcMotor motor;
+    int motor;
 
-    public gfp_LeoDrive(Engine engine,DcMotor motor,double speed, State shouldStop){
+    public gfp_LeoDrive(Engine engine,int motor,double speed, State shouldStop){
         this.engine = engine;
         this.shouldStop = shouldStop;
         this.motor = motor;
@@ -33,11 +35,17 @@ public class gfp_LeoDrive extends State {
     @Override
     public void exec(){
 
-        if(!shouldStop.isFinished){
+
+        engine.telemetry.addData("HI",engine.getMotor(motor));
+        engine.telemetry.update();
+
+        //engine.getMotor(engine.dcBackLeft).setPower(0.5);
+
+        /*if(!shouldStop.isFinished){
             motor.setPower(speed);
         }else{
             motor.setPower(0.0);
-        }
+        }*/
 
     }
 }

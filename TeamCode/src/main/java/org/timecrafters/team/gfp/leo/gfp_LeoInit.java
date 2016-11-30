@@ -55,8 +55,8 @@ public class gfp_LeoInit extends State {
         engine.dsRightReader.engage();
 
         //TODO make a more get rid of this function after testing
-        engine.servoOne = engine.hardwareMap.servo.get("servoOne");
-        engine.servoTwo = engine.hardwareMap.servo.get("servoTwo");
+        //engine.servoOne = engine.hardwareMap.servo.get("servoOne");
+        //engine.servoTwo = engine.hardwareMap.servo.get("servoTwo");
 
 
         /*distanceSensorFront = opMode.hardwareMap.opticalDistanceSensor.get("distanceSensorFront");

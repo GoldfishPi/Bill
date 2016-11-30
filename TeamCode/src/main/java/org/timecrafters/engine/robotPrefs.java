@@ -1,6 +1,8 @@
 package org.timecrafters.engine;
 
 
+import android.util.Log;
+
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.DcMotor;
@@ -23,6 +25,8 @@ import org.firstinspires.ftc.robotcontroller.external.samples.SensorMRRangeSenso
 
 public abstract class RobotPrefs extends OpMode {
 
+    final String TAG = "program.robotprefs";
+
     public volatile DeviceInterfaceModule deviceInterfaceModule;
 
     public volatile ColorSensor colorSensorRight;
@@ -44,6 +48,21 @@ public abstract class RobotPrefs extends OpMode {
     //TODO organise servos
     public volatile Servo servoOne;
     public volatile Servo servoTwo;
+
+    public volatile DcMotor[] motors = new DcMotor[12];
+
+
+
+
+    public DcMotor getMotor(int motor){
+        motors[0] = dcBackLeft;
+        motors[1] = dcBackRight;
+        motors[2] = dcPresser;
+        motors[3] = dcShooter;
+        Log.i(TAG,Integer.toString(motor));
+        return motors[motor];
+
+    }
 
 
 }

@@ -11,9 +11,9 @@ import org.timecrafters.engine.State;
 
 public class gfp_LeoEncoders extends State {
 
-    DcMotor motor;
+    int motor;
     double pos;
-    public gfp_LeoEncoders(Engine engine, DcMotor motor,double position){
+    public gfp_LeoEncoders(Engine engine, int motor,double position){
         this.engine = engine;
         this.motor = motor;
         this.pos = position;
@@ -26,7 +26,7 @@ public class gfp_LeoEncoders extends State {
     @Override
     public void exec(){
 
-        if(motor.getCurrentPosition() >= pos){
+        if(engine.getMotor(motor).getCurrentPosition() >= pos){
             setFinished(true);
         }
 
