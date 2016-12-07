@@ -23,5 +23,5 @@ Jewls is the package for the time crafter's 2016-2017 robot.
         -All states concerning logic(i.e comparing multiple states) should be contained in this package.
     ->sensors
         -All states containing senosrs excluding encoders is contained in this package.
-    ->wich
+    ->winch
         -All states containing the winch sistem and the skythes are contained in tis package.
