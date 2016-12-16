@@ -32,10 +32,15 @@ public abstract class RobotPrefs extends OpMode {
     public volatile ColorSensor colorSensorRight;
     public volatile ColorSensor colorSensorLeft;
 
-    public volatile DcMotor dcBackLeft;
-    public volatile DcMotor dcBackRight;
     public volatile DcMotor dcShooter;
     public volatile DcMotor dcPresser;
+
+    public volatile DcMotor dcFrontRight;
+    public volatile DcMotor dcBackRight;
+    public volatile DcMotor dcFrontLeft;
+    public volatile DcMotor dcBackLeft;
+
+
 
     public volatile I2cDevice distanceSensorFront;
     public volatile I2cDevice distanceSensorRight;
