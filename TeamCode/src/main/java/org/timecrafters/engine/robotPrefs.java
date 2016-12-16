@@ -23,7 +23,7 @@ import org.firstinspires.ftc.robotcontroller.external.samples.SensorMRRangeSenso
 
 //Setup robot prefrance
 
-public abstract class RobotPrefs extends OpMode {
+public abstract class robotPrefs extends OpMode {
 
     final String TAG = "program.robotprefs";
 
