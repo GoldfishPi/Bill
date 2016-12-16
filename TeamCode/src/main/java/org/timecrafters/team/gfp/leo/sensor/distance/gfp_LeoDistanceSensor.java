@@ -1,4 +1,4 @@
-package org.timecrafters.team.gfp.leo;
+package org.timecrafters.team.gfp.leo.sensor.distance;
 
 import android.util.Log;
 

@@ -36,7 +36,6 @@ public abstract class Engine extends RobotPrefs {
     private boolean machineFinished = false;
     private boolean opFininished = true;
 
-
     public void init() {
         setProcesses();
         for(int i = 0;i < processes.length;i++) {
