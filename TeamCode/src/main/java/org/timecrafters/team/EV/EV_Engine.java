@@ -12,7 +12,7 @@ public class EV_Engine extends Engine {
 
     @Override
     public void setProcesses() {
-        processes[0][0] = EV_thisIsJustAState(this);
+        processes[0][0] = new EV_thisIsJustAState(this);
 
     }
 }

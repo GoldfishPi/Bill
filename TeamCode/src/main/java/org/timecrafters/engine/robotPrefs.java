@@ -23,7 +23,7 @@ import org.firstinspires.ftc.robotcontroller.external.samples.SensorMRRangeSenso
 
 //Setup robot prefrance
 
-public abstract class robotPrefs extends OpMode {
+public abstract class RobotPrefs extends OpMode {
 
     final String TAG = "program.robotprefs";
 
@@ -35,10 +35,10 @@ public abstract class robotPrefs extends OpMode {
     public volatile DcMotor dcShooter;
     public volatile DcMotor dcPresser;
 
-    public volatile DcMotor dcFrontRight;
-    public volatile DcMotor dcBackRight;
-    public volatile DcMotor dcFrontLeft;
-    public volatile DcMotor dcBackLeft;
+    public volatile DcMotor dcFrontRight= hardwareMap.dcMotor.get("frontRight");
+    public volatile DcMotor dcBackRight = hardwareMap.dcMotor.get("backRight");
+    public volatile DcMotor dcFrontLeft = hardwareMap.dcMotor.get("frontLeft");
+    public volatile DcMotor dcBackLeft  = hardwareMap.dcMotor.get("backLeft");
 
 
 
@@ -62,8 +62,10 @@ public abstract class robotPrefs extends OpMode {
     public DcMotor getMotor(int motor){
         motors[0] = dcBackLeft;
         motors[1] = dcBackRight;
-        motors[2] = dcPresser;
-        motors[3] = dcShooter;
+        motors[2] = dcFrontLeft;
+        motors[3] = dcFrontRight;
+        motors[4] = dcPresser;
+        motors[5] = dcShooter;
         Log.i(TAG,Integer.toString(motor));
         return motors[motor];
 

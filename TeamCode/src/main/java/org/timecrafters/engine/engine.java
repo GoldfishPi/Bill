@@ -2,9 +2,6 @@ package org.timecrafters.engine;
 
 import android.util.Log;
 
-import com.qualcomm.robotcore.eventloop.opmode.OpMode;
-import com.qualcomm.robotcore.hardware.ColorSensor;
-
 /**
  * Created by t420 on 9/29/2016.
  * First sucess ful test was 5:00 6 thur oct 2016
