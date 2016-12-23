@@ -11,14 +11,21 @@ import org.timecrafters.engine.State;
  */
 
 public class EV_thisIsJustAState extends State {
+    double speed = 0.1;
+    boolean dPadUp = false;
+    boolean dPadDown = false;
+    boolean dPadRight = false;
+    boolean dPadLeft = false;
 
     public EV_thisIsJustAState (EV_Engine engine ){
 
         this.engine = engine;
-//        engine.dcFrontRight = engine.hardwareMap.dcMotor.get("dcFrontRight");
-//        engine.dcFrontLeft = engine.hardwareMap.dcMotor.get("dcFrontLeft");
-//        engine.dcBackRight = engine.hardwareMap.dcMotor.get("dcBackRight");
-//        engine.dcBackLeft = engine.hardwareMap.dcMotor.get("dcBackLeft");
+        engine.dcFrontRight = engine.hardwareMap.dcMotor.get("frontRight");
+        engine.dcFrontLeft  = engine.hardwareMap.dcMotor.get("frontLeft");
+        engine.dcBackRight  = engine.hardwareMap.dcMotor.get("backRight");
+        engine.dcBackLeft   = engine.hardwareMap.dcMotor.get("backLeft");
+
+        System.out.println("DC Motor: "+engine.dcBackLeft.toString());
 
     }
 
@@ -30,15 +37,63 @@ public class EV_thisIsJustAState extends State {
     @Override
     public void exec() {
 
-        for (int times = 0; times < 100;) {
-
-            engine.dcFrontRight.setPower(1.0);
+        if (engine.gamepad1.dpad_up && !dPadUp) {
+            dPadUp = true;
+            engine.dcFrontRight.setPower(-1.0);
             engine.dcFrontLeft.setPower(1.0);
             engine.dcBackRight.setPower(1.0);
             engine.dcBackLeft.setPower(1.0);
-
+        } else if (!engine.gamepad1.dpad_up && dPadUp) {
+            dPadUp = false;
         }
-        setFinished(true);
+//D pad down pressed
+        if (engine.gamepad1.dpad_down && !dPadDown) {
+            dPadDown = true;
+            engine.dcFrontRight.setPower(1.0);
+            engine.dcFrontLeft.setPower(-1.0);
+            engine.dcBackRight.setPower(-1.0);
+            engine.dcBackLeft.setPower(-1.0);
+        } else if (!engine.gamepad1.dpad_up && dPadDown) {
+            dPadDown = false;
+        }
+
+//D pad right pressed
+        if (engine.gamepad1.dpad_right && !dPadRight) {
+            dPadRight = true;
+            engine.dcFrontRight.setPower(1.0);
+            engine.dcFrontLeft.setPower(1.0);
+            engine.dcBackRight.setPower(1.0);
+            engine.dcBackLeft.setPower(-1.0);
+        } else if (!engine.gamepad1.dpad_right && dPadRight) {
+            dPadRight = false;
+        }
+//D pad left pressed
+        if (engine.gamepad1.dpad_left && !dPadLeft) {
+            dPadLeft = true;
+            engine.dcFrontRight.setPower(-1.0);
+            engine.dcFrontLeft.setPower(-1.0);
+            engine.dcBackRight.setPower(-1.0);
+            engine.dcBackLeft.setPower(1.0);
+        } else if (!engine.gamepad1.dpad_left && dPadLeft) {
+            dPadLeft = false;
+        }
+        if(engine.gamepad1.a) {
+//        if(dPadUp || dPadDown || dPadLeft || dPadRight) {
+            engine.dcFrontRight.setPower(0.0);
+            engine.dcFrontLeft.setPower(0.0);
+            engine.dcBackRight.setPower(0.0);
+            engine.dcBackLeft.setPower(0.0);
+        }
+
+
+
+
+//            engine.dcFrontRight.setPower(-1.0);
+//            engine.dcFrontLeft.setPower(-1.0);
+//            engine.dcBackRight.setPower(-1.0);
+//            engine.dcBackLeft.setPower(1.0);
+
+
 
     }
 }

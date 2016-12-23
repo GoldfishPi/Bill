@@ -35,10 +35,10 @@ public abstract class RobotPrefs extends OpMode {
     public volatile DcMotor dcShooter;
     public volatile DcMotor dcPresser;
 
-    public volatile DcMotor dcFrontRight= hardwareMap.dcMotor.get("frontRight");
-    public volatile DcMotor dcBackRight = hardwareMap.dcMotor.get("backRight");
-    public volatile DcMotor dcFrontLeft = hardwareMap.dcMotor.get("frontLeft");
-    public volatile DcMotor dcBackLeft  = hardwareMap.dcMotor.get("backLeft");
+    public volatile DcMotor dcFrontRight;
+    public volatile DcMotor dcBackRight;
+    public volatile DcMotor dcFrontLeft;
+    public volatile DcMotor dcBackLeft;
 
 
 
