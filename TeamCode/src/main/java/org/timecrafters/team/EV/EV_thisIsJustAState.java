@@ -1,10 +1,13 @@
 package org.timecrafters.team.EV;
 
-import com.qualcomm.robotcore.hardware.HardwareDevice;
-import com.qualcomm.robotcore.hardware.HardwareMap;
+import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.Servo;
+import com.qualcomm.robotcore.hardware.ServoController;
 
-import org.timecrafters.engine.Engine;
 import org.timecrafters.engine.State;
+
+import java.util.HashMap;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Created by cyber on 12/15/2016.
@@ -25,8 +28,6 @@ public class EV_thisIsJustAState extends State {
         engine.dcBackRight  = engine.hardwareMap.dcMotor.get("backRight");
         engine.dcBackLeft   = engine.hardwareMap.dcMotor.get("backLeft");
 
-        System.out.println("DC Motor: "+engine.dcBackLeft.toString());
-
     }
 
     @Override
@@ -36,7 +37,6 @@ public class EV_thisIsJustAState extends State {
 
     @Override
     public void exec() {
-
         if (engine.gamepad1.dpad_up && !dPadUp) {
             dPadUp = true;
             engine.dcFrontRight.setPower(-1.0);
@@ -96,4 +96,9 @@ public class EV_thisIsJustAState extends State {
 
 
     }
+
+//    @Override
+//    void stop {
+//
+//    }
 }
