@@ -25,6 +25,7 @@ public class CyberarmLEDState extends State {
     DcMotor inactive_led_motor;
     int dash;
     int dot;
+    double power;
     HashMap<String, int[]> morseCode;
 
     public CyberarmLEDState(Engine engine) {
@@ -35,9 +36,10 @@ public class CyberarmLEDState extends State {
         otherRoller = engine.hardwareMap.servo.get("otherRoller");
         particleLift = engine.hardwareMap.dcMotor.get("particleLift");
         particleLift2 = engine.hardwareMap.dcMotor.get("particleLift2");
-        dot  = 100; // milliseconds
-        dash = 300; // milliseconds
+        dot  = 250; // milliseconds
+        dash = (dot*3); // milliseconds
         morseCode = new HashMap<String, int[]>();
+        power = 0.01;
 
         morseCode.put("A", new int[]{dot, dash});
         morseCode.put("B", new int[]{dash, dot, dot, dot});
@@ -79,20 +81,20 @@ public class CyberarmLEDState extends State {
         // RED
         System.out.print("LOOPING");
         if (engine.gamepad1.right_bumper && !engine.gamepad1.left_bumper) {
-            particleLift.setPower(0.1);
+            particleLift.setPower(power);
             particleLift2.setPower(0.0);
             System.out.println("RED RED RED");
             animate(particleLift, particleLift2);
         } else {
             if (!engine.gamepad1.left_bumper) {
-                particleLift.setPower(0.1);
+                particleLift.setPower(power);
             }
         }
 
         // BLUE
         if (engine.gamepad1.left_bumper && !engine.gamepad1.right_bumper) {
             particleLift.setPower(0.0);
-            particleLift2.setPower(0.1);
+            particleLift2.setPower(power);
             System.out.println("BLUE BLUE BLUE");
             animate(particleLift2, particleLift);
         } else {
@@ -135,32 +137,28 @@ public class CyberarmLEDState extends State {
 
     void animateMorseCode(int[] data) {
         for (int i = 0; i < data.length; i++) {
-//            row(new int[][]{off, off, off, off, off, off, off, off});
-            active_led_motor.setPower(0.1);
-            inactive_led_motor.setPower(0.1);
+            active_led_motor.setPower(power);
+            inactive_led_motor.setPower(power);
             sleep(data[i]);
-//            row(new int[][]{color, color, color, color, color, color, color, color});
-            active_led_motor.setPower(0.1);
+            active_led_motor.setPower(power);
             inactive_led_motor.setPower(0.0);
             sleep(dot);
         }
         // Letter Pause
-        active_led_motor.setPower(0.1);
+        active_led_motor.setPower(power);
         inactive_led_motor.setPower(0.0);
         sleep(dot*2); // 3 unit (1 unit comes from the animator)
     }
 
     // Word Pause
     void newWord() {
-        active_led_motor.setPower(0.1);
-        active_led_motor.setPower(0.0);
+        active_led_motor.setPower(power);
+        inactive_led_motor.setPower(0.0);
         sleep(dot*7);
     }
 
     void sleep(Integer milliseconds) {
         try {
-            active_led_motor.setPower(0.1);
-            inactive_led_motor.setPower(0.0);
             TimeUnit.MILLISECONDS.sleep(milliseconds);
         } catch (InterruptedException errorObject) {
             // Java, you're funny.
