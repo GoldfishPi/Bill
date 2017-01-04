@@ -91,11 +91,12 @@ public abstract class Engine extends RobotPrefs {
 
     @Override
     public void stop(){
-        for(int i = 0;i < processes.length;i++) {
+        for(int x = 0;x < processes.length;x++) {
             for (int y = 0; y < processes.length; y++) {
-                if(processes[i][y] != null) {
-                    processes[i][y].isFinished = true;
-                }//what
+                if(processes[x][y] != null) {
+                    processes[x][y].stop();
+                    processes[x][y].setFinished(true);
+                }
                 break;
             }
         }
