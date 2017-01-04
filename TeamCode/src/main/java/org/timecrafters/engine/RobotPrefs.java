@@ -18,6 +18,9 @@ import com.qualcomm.robotcore.hardware.TouchSensor;
 
 //Setup robot prefrance
 
+    /*
+    * NAME YOUR CONFIG FILES THE SAME AS IN ROBOT PREFS
+    * */
 public abstract class RobotPrefs extends OpMode {
 
     final String TAG = "program.robotprefs";

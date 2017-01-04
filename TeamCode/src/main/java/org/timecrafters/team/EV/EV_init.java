@@ -16,11 +16,14 @@ public class EV_init extends State {
     @Override
 
     public void init(){
+        /*
+    * NAME YOUR CONFIG FILES THE SAME AS IN ROBOT PREFS
+    * */
 
-        engine.dcFrontRight = engine.hardwareMap.dcMotor.get("frontRight");
-        engine.dcFrontRight = engine.hardwareMap.dcMotor.get("frontLeft");
-        engine.dcBackRight = engine.hardwareMap.dcMotor.get("backRight");
-        engine.dcBackLeft = engine.hardwareMap.dcMotor.get("backLeft");
+        engine.dcFrontRight = engine.hardwareMap.dcMotor.get("dcFrontRight");
+        engine.dcFrontRight = engine.hardwareMap.dcMotor.get("dcFrontLeft");
+        engine.dcBackRight = engine.hardwareMap.dcMotor.get("dcBackRight");
+        engine.dcBackLeft = engine.hardwareMap.dcMotor.get("dcBackLeft");
 
 
     }
