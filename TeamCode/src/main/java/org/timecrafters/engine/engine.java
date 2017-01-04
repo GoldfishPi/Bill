@@ -95,7 +95,8 @@ public abstract class Engine extends RobotPrefs {
             for (int y = 0; y < processes.length; y++) {
                 if(processes[i][y] != null) {
                     processes[i][y].isFinished = true;
-                }
+                }//what
+                break;
             }
         }
     }
