@@ -96,6 +96,7 @@ public abstract class Engine extends RobotPrefs {
                 if(processes[x][y] != null) {
                     processes[x][y].stop();
                     processes[x][y].setFinished(true);
+                    Log.i(TAG, "KILLED OP : " + "[" + Integer.toString(x) + "]" + "[" + Integer.toString(y) + "]");
                 }
                 break;
             }
