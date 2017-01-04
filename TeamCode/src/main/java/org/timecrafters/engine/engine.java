@@ -22,6 +22,7 @@ import android.util.Log;
 
 public abstract class Engine extends RobotPrefs {
 
+    //changed robot prefs
     public State[][] processes = new State[100][100];
     private Thread[] threads = new Thread[100];
     private int threadX = 0;
@@ -94,7 +95,8 @@ public abstract class Engine extends RobotPrefs {
             for (int y = 0; y < processes.length; y++) {
                 if(processes[i][y] != null) {
                     processes[i][y].isFinished = true;
-                }
+                }//what
+                break;
             }
         }
     }
