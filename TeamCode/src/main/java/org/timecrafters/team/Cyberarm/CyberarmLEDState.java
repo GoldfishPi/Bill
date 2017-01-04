@@ -39,7 +39,7 @@ public class CyberarmLEDState extends State {
         dot  = 250; // milliseconds
         dash = (dot*3); // milliseconds
         morseCode = new HashMap<String, int[]>();
-        power = 0.01;
+        power = 0.1;
 
         morseCode.put("A", new int[]{dot, dash});
         morseCode.put("B", new int[]{dash, dot, dot, dot});
@@ -78,6 +78,7 @@ public class CyberarmLEDState extends State {
 
     @Override
     public void exec() {
+        animate(particleLift, particleLift2);
         // RED
         System.out.print("LOOPING");
         if (engine.gamepad1.right_bumper && !engine.gamepad1.left_bumper) {
@@ -107,19 +108,32 @@ public class CyberarmLEDState extends State {
     void animate(DcMotor onMotor, DcMotor offMotor) {
         active_led_motor = onMotor;
         inactive_led_motor = offMotor;
-        letter("M");
-        letter("E");
-        letter("N");
-        letter("T");
-        letter("O");
-        letter("R");
-        letter("S");
-        newWord(); // insert "STOP" or change color drastically.
+//        letter("M");
+//        letter("E");
+//        letter("N");
+//        letter("T");
+//        letter("O");
+//        letter("R");
+//        letter("S");
+//        newWord(); // insert "STOP" or change color drastically.
+//
+//        letter("R");
+//        letter("O");
+//        letter("C");
+//        letter("K");
 
-        letter("R");
+        letter("H");
+        letter("E");
+        letter("L");
+        letter("L");
+        letter("0");
+        newWord();
+
+        letter("W");
         letter("O");
-        letter("C");
-        letter("K");
+        letter("R");
+        letter("L");
+        letter("D");
         newWord();
     }
 

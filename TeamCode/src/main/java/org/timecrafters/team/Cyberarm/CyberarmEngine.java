@@ -13,4 +13,9 @@ public class CyberarmEngine extends Engine {
         processes[0][0] = new CyberarmLEDState(this);
 
     }
+
+    @Override
+    public void stop() {
+        processes[0][0].setFinished(true);
+    }
 }
