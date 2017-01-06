@@ -22,7 +22,7 @@ public abstract class State implements Runnable  {
 
 
 
-    public abstract void init();
+    public void init(){}
 
     public abstract void exec();
 
