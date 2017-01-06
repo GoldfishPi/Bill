@@ -22,11 +22,15 @@ public class EV_thisIsJustAState extends State {
 
     public EV_thisIsJustAState (EV_Engine engine ){
 
+        /*
+    * NAME YOUR CONFIG FILES THE SAME AS IN ROBOT PREFS
+    * */
+
         this.engine = engine;
-        engine.dcFrontRight = engine.hardwareMap.dcMotor.get("frontRight");
-        engine.dcFrontLeft  = engine.hardwareMap.dcMotor.get("frontLeft");
-        engine.dcBackRight  = engine.hardwareMap.dcMotor.get("backRight");
-        engine.dcBackLeft   = engine.hardwareMap.dcMotor.get("backLeft");
+        engine.dcFrontRight = engine.hardwareMap.dcMotor.get("dcFrontRight");
+        engine.dcFrontLeft  = engine.hardwareMap.dcMotor.get("dcFrontLeft");
+        engine.dcBackRight  = engine.hardwareMap.dcMotor.get("dcBackRight");
+        engine.dcBackLeft   = engine.hardwareMap.dcMotor.get("dcBackLeft");
 
     }
 

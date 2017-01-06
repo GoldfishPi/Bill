@@ -33,6 +33,11 @@ public abstract class State implements Runnable  {
         }
     }
 
+    public void stop(){
+        /*
+        * Override this and put your ending crap in here
+        * */
+    }
 
 
     public void setFinished(boolean value){
