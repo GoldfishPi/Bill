@@ -13,10 +13,6 @@ import static org.firstinspires.ftc.teamcode.R.layout.motor;
 
 public class gfp_jewlsDrive extends State {
 
-    DcMotor rightFront;
-    DcMotor rightBack;
-    DcMotor leftFront;
-    DcMotor leftBack;
 
     double speeds[] = new double[3];
     DcMotor motors[] = new DcMotor[3];
@@ -52,5 +48,10 @@ public class gfp_jewlsDrive extends State {
 
     public void setDistance(double distance){
         distanceSet = distance;
+    }
+
+    public void setMotors(DcMotor motor, Double speed, int index){
+        motors[index] = motor;
+        speeds[index] = speed;
     }
 }
