@@ -38,8 +38,6 @@ public abstract class RobotPrefs extends OpMode {
     public volatile DcMotor dcFrontLeft;
     public volatile DcMotor dcBackLeft;
 
-
-
     public volatile I2cDevice distanceSensorFront;
     public volatile I2cDevice distanceSensorRight;
 
@@ -48,9 +46,10 @@ public abstract class RobotPrefs extends OpMode {
 
     public volatile TouchSensor touchSensor;
 
-    //TODO organise servos
-    public volatile Servo servoOne;
-    public volatile Servo servoTwo;
+    public volatile Servo svRightFront;
+    public volatile Servo svLeftFront;
+    public volatile Servo svRightBack;
+    public volatile Servo svleftBack;
 
     public volatile DcMotor[] motors = new DcMotor[12];
 
