@@ -121,4 +121,14 @@ public abstract class Engine extends RobotPrefs {
             Log.i(TAG, "FAILED TO ADD STATE AT : " + "[" + Integer.toString(getProcessIndex()) + "]" + "[" + Integer.toString(y) + "]");
         }
     }
+
+    public void endProcess(int index,State state){
+        for(int i = 0; i < processes.length;i++){
+            if(processes[index][i] == state){
+                processes[index][i].setFinished(true);
+                Log.i(TAG, "FORCED STOP AT : " + "[" + Integer.toString(getProcessIndex()) + "]" + "[" + Integer.toString(i) + "]");
+                break;
+            }
+        }
+    }
 }

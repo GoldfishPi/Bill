@@ -1,5 +1,7 @@
 package org.timecrafters.team.gfp.jewls;
 
+import com.qualcomm.robotcore.hardware.DcMotor;
+
 import org.timecrafters.engine.Engine;
 import org.timecrafters.engine.State;
 
@@ -9,26 +11,46 @@ import org.timecrafters.engine.State;
 
 public class gfp_jewlsInit extends State {
 
-    public gfp_jewlsInit(Engine engine){
+    public gfp_jewlsInit(Engine engine) {
         this.engine = engine;
     }
 
     @Override
-    public void init(){
+    public void init() {
+
+        //Setting Drive train variables
         engine.dcFrontRight = engine.hardwareMap.dcMotor.get("dcFrontRight");
-        engine.dcFrontLeft  = engine.hardwareMap.dcMotor.get("dcFrontLeft");
-        engine.dcBackRight  = engine.hardwareMap.dcMotor.get("dcBackRight");
-        engine.dcBackLeft   = engine.hardwareMap.dcMotor.get("dcBackLeft");
+        engine.dcFrontLeft = engine.hardwareMap.dcMotor.get("dcFrontLeft");
+        engine.dcBackRight = engine.hardwareMap.dcMotor.get("dcBackRight");
+        engine.dcBackLeft = engine.hardwareMap.dcMotor.get("dcBackLeft");
 
-        engine.dcArm        = engine.hardwareMap.dcMotor.get("dcArm");
-        engine.dcShooter    = engine.hardwareMap.dcMotor.get("dcShooter");
+        //setting drive train run mode
+        engine.dcFrontRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        engine.dcFrontLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        engine.dcBackRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        engine.dcBackLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
+        //setting arm and shooter variables
+        engine.dcArm = engine.hardwareMap.dcMotor.get("dcArm");
+        engine.dcShooter = engine.hardwareMap.dcMotor.get("dcShooter");
+
+        //setting arm and shooter run mode
+        engine.dcArm.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        engine.dcShooter.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+
+        //setting touch sensor variables
         engine.shooterTouch = engine.hardwareMap.touchSensor.get("shooterTouch");
+
+        //setting servos for ball capture
+        engine.svLeftBack = engine.hardwareMap.servo.get("svLeftFront");
+        engine.svLeftBack = engine.hardwareMap.servo.get("svRightFront");
+        engine.svLeftBack = engine.hardwareMap.servo.get("svLeftBack");
+        engine.svLeftBack = engine.hardwareMap.servo.get("svRightBack");
 
     }
 
     @Override
-    public void exec(){
+    public void exec() {
         setFinished(true);
     }
 }

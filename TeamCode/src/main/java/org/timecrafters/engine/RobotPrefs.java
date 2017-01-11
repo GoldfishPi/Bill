@@ -50,7 +50,7 @@ public abstract class RobotPrefs extends OpMode {
     public volatile Servo svRightFront;
     public volatile Servo svLeftFront;
     public volatile Servo svRightBack;
-    public volatile Servo svleftBack;
+    public volatile Servo svLeftBack;
 
     public volatile DcMotor[] motors = new DcMotor[12];
 
