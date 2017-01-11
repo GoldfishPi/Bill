@@ -1,7 +1,5 @@
 package org.timecrafters.team.Cyberarm;
 
-import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.hardware.ServoController;
 
 import org.timecrafters.engine.Engine;
@@ -16,13 +14,17 @@ import java.util.concurrent.TimeUnit;
 
 public class CyberarmLEDState extends State {
 
-    Servo roller;
-    Servo otherRoller;
-    DcMotor particleLift;
-    DcMotor particleLift2;
+    // REAL DEVICES
+//    DcMotor particleLift;
+//    DcMotor particleLift2;
+//    DcMotor active_led_motor;
+//    DcMotor inactive_led_motor;
+    // Virtual Devices
+    CyberarmVirtualDcMotor particleLift;
+    CyberarmVirtualDcMotor particleLift2;
+    CyberarmVirtualDcMotor active_led_motor;
+    CyberarmVirtualDcMotor inactive_led_motor;
     ServoController servoController;
-    DcMotor active_led_motor;
-    DcMotor inactive_led_motor;
     int dash;
     int dot;
     double power;
@@ -31,11 +33,12 @@ public class CyberarmLEDState extends State {
     public CyberarmLEDState(Engine engine) {
         this.engine = engine;
 
-        servoController = engine.hardwareMap.servoController.get("thingy");
-        roller = engine.hardwareMap.servo.get("roller");
-        otherRoller = engine.hardwareMap.servo.get("otherRoller");
-        particleLift = engine.hardwareMap.dcMotor.get("particleLift");
-        particleLift2 = engine.hardwareMap.dcMotor.get("particleLift2");
+        // Virtual Devices
+        particleLift = new CyberarmVirtualDcMotor();
+        particleLift2 = new CyberarmVirtualDcMotor();
+        // Real Motors
+//        particleLift = engine.hardwareMap.dcMotor.get("particleLift");
+//        particleLift2 = engine.hardwareMap.dcMotor.get("particleLift2");
         dot  = 250; // milliseconds
         dash = (dot*3); // milliseconds
         morseCode = new HashMap<String, int[]>();
@@ -70,14 +73,19 @@ public class CyberarmLEDState extends State {
 
     }
 
-    @Override
+    // Ruby For Life!!!
+    void puts(String string) { System.out.println(string);}
+
     public void init(){
+        System.out.println("Initializing");
         particleLift.setPower(0.1);
         particleLift2.setPower(0.1);
+        puts("Initialized");
     }
 
     @Override
     public void exec() {
+        System.out.print("Executing");
         animate(particleLift, particleLift2);
         // RED
         System.out.print("LOOPING");
@@ -105,7 +113,7 @@ public class CyberarmLEDState extends State {
         }
     }
 
-    void animate(DcMotor onMotor, DcMotor offMotor) {
+    void animate(CyberarmVirtualDcMotor onMotor, CyberarmVirtualDcMotor offMotor) {
         active_led_motor = onMotor;
         inactive_led_motor = offMotor;
 //        letter("M");
@@ -122,18 +130,36 @@ public class CyberarmLEDState extends State {
 //        letter("C");
 //        letter("K");
 
-        letter("H");
-        letter("E");
-        letter("L");
-        letter("L");
-        letter("0");
-        newWord();
+//        letter("H");
+//        letter("E");
+//        letter("L");
+//        letter("L");
+//        letter("0");
+//        newWord();
+//
+//        letter("W");
+//        letter("O");
+//        letter("R");
+//        letter("L");
+//        letter("D");
+//        newWord();
+        sentence("Hello World");
+    }
 
-        letter("W");
-        letter("O");
-        letter("R");
-        letter("L");
-        letter("D");
+    void sentence(String _sentence) {
+        puts("Sentence Processor: "+_sentence);
+        String[] list = _sentence.trim().split("");
+
+        for (int i = 0; i < list.length; i++) {
+            System.out.println("Sentence processor: "+list[i]);
+            if (list[i] == " ") {
+                newWord();
+            } else if(list[i].matches("\\^0-9$")) {
+                // Do nothing
+            } else {
+                letter(list[i]);
+            }
+        }
         newWord();
     }
 
