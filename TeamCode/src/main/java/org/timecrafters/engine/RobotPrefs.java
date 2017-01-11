@@ -32,6 +32,7 @@ public abstract class RobotPrefs extends OpMode {
 
     public volatile DcMotor dcShooter;
     public volatile DcMotor dcPresser;
+    public volatile DcMotor dcArm;
 
     public volatile DcMotor dcFrontRight;
     public volatile DcMotor dcBackRight;

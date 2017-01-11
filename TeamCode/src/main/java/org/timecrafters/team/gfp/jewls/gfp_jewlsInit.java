@@ -20,9 +20,11 @@ public class gfp_jewlsInit extends State {
         engine.dcBackRight  = engine.hardwareMap.dcMotor.get("dcBackRight");
         engine.dcBackLeft   = engine.hardwareMap.dcMotor.get("dcBackLeft");
 
+        engine.dcArm        = engine.hardwareMap.dcMotor.get("dcArm");
         engine.dcShooter    = engine.hardwareMap.dcMotor.get("dcShooter");
 
         engine.shooterTouch = engine.hardwareMap.touchSensor.get("shooterTouch");
+
     }
 
     @Override

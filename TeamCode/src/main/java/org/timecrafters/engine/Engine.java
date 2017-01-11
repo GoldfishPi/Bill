@@ -104,4 +104,21 @@ public abstract class Engine extends RobotPrefs {
     }
 
     public abstract void setProcesses();
+
+    public int getProcessIndex(){
+        return x;
+    }
+
+    public void addProcess(State state){
+        int y = 0;
+        while (processes[getProcessIndex()][y] != null){
+            y++;
+        }
+        if( y <= 100){
+            processes[getProcessIndex()][y] = state;
+            Log.i(TAG, "ADDED STATE : " + "[" + Integer.toString(getProcessIndex()) + "]" + "[" + Integer.toString(y) + "]");
+        }else{
+            Log.i(TAG, "FAILED TO ADD STATE AT : " + "[" + Integer.toString(getProcessIndex()) + "]" + "[" + Integer.toString(y) + "]");
+        }
+    }
 }
