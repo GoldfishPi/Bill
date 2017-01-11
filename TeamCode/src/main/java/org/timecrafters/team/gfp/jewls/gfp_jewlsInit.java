@@ -1,4 +1,4 @@
-package org.timecrafters.team.gfp;
+package org.timecrafters.team.gfp.jewls;
 
 import org.timecrafters.engine.Engine;
 import org.timecrafters.engine.State;
@@ -19,6 +19,10 @@ public class gfp_jewlsInit extends State {
         engine.dcFrontLeft  = engine.hardwareMap.dcMotor.get("dcFrontLeft");
         engine.dcBackRight  = engine.hardwareMap.dcMotor.get("dcBackRight");
         engine.dcBackLeft   = engine.hardwareMap.dcMotor.get("dcBackLeft");
+
+        engine.dcShooter    = engine.hardwareMap.dcMotor.get("dcShooter");
+
+        engine.shooterTouch = engine.hardwareMap.touchSensor.get("shooterTouch");
     }
 
     @Override

@@ -44,7 +44,7 @@ public abstract class RobotPrefs extends OpMode {
     public volatile I2cDeviceSynch dsFrontReader;
     public volatile I2cDeviceSynch dsRightReader;
 
-    public volatile TouchSensor touchSensor;
+    public volatile TouchSensor shooterTouch;
 
     public volatile Servo svRightFront;
     public volatile Servo svLeftFront;

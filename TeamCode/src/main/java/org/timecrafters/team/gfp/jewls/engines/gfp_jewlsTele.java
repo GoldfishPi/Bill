@@ -4,10 +4,10 @@ import org.timecrafters.engine.Engine;
 import org.timecrafters.team.gfp.jewls.gfp_jewlsInit;
 
 /**
- * Created by t420 on 1/5/2017.
+ * Created by t420 on 1/6/2017.
  */
 
-public class gfp_jewlsEngine extends Engine {
+public class gfp_jewlsTele extends Engine {
 
     @Override
     public void setProcesses(){
