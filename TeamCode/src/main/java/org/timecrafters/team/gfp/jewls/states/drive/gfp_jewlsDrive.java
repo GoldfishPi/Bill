@@ -1,57 +1,46 @@
 package org.timecrafters.team.gfp.jewls.states.drive;
 
-import com.qualcomm.robotcore.hardware.DcMotor;
+import android.util.Log;
 
-import org.timecrafters.engine.Engine;
 import org.timecrafters.engine.State;
-
-import static org.firstinspires.ftc.teamcode.R.layout.motor;
 
 /**
  * Created by t420 on 1/5/2017.
  */
 
+
+/*
+* back left
+* front left
+* front right
+* back right
+* */
 public class gfp_jewlsDrive extends State {
 
-
-    double speeds[] = new double[3];
-    DcMotor motors[] = new DcMotor[3];
-
-    double average;
-    double distanceSet;
+    public int[] directions = new int[4];
+    public boolean halt = false;
+    private double haltTime;
 
     @Override
     public void exec() {
 
-        for (int i = 0; i < speeds.length; i++){
-            average += motors[0].getCurrentPosition();
-        }
-        average /= motors.length;
+        engine.dcBackLeft.setPower(directions[0] * 1.0);
+        engine.dcFrontLeft.setPower(directions[1] * 1.0);
+        engine.dcFrontRight.setPower(directions[2] * 1.0);
+        engine.dcBackRight.setPower(directions[3] * 1.0);
 
-        if(distanceSet <= average) {
-            for(int i = 0; i < motors.length;i++){
-                motors[i].setPower(speeds[i]);
-            }
-        }else{
-            for(int i = 0; i < motors.length;i++){
-                motors[i].setPower(0);
-            }
-        }
     }
 
     @Override
     public void stop(){
-        for(int i = 0; i < motors.length;i++){
-            motors[i].setPower(0);
-        }
-    }
 
-    public void setDistance(double distance){
-        distanceSet = distance;
-    }
+        engine.dcFrontRight.setPower(-1.0);
+        engine.dcFrontLeft.setPower(-1.0);
 
-    public void setMotors(DcMotor motor, Double speed, int index){
-        motors[index] = motor;
-        speeds[index] = speed;
+        engine.dcBackLeft.setPower(-1.0);
+        engine.dcBackRight.setPower(-1.0);
+        halt = false;
+        Log.i(TAG, "SET MOTORS BACKWARD");
+
     }
 }

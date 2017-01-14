@@ -1,6 +1,7 @@
 package org.timecrafters.team.gfp.jewls;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
 import org.timecrafters.engine.Engine;
 import org.timecrafters.engine.State;
@@ -30,6 +31,9 @@ public class gfp_jewlsInit extends State {
         engine.dcBackRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         engine.dcBackLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
+        //reservse front right motor;
+        engine.dcFrontRight.setDirection(DcMotorSimple.Direction.REVERSE);
+
         //setting arm and shooter variables
         engine.dcArm = engine.hardwareMap.dcMotor.get("dcArm");
         engine.dcShooter = engine.hardwareMap.dcMotor.get("dcShooter");
@@ -41,11 +45,14 @@ public class gfp_jewlsInit extends State {
         //setting touch sensor variables
         engine.shooterTouch = engine.hardwareMap.touchSensor.get("shooterTouch");
 
+        //setting optical distance sensor
+        engine.dsBack = engine.hardwareMap.opticalDistanceSensor.get("dsBack");
+
         //setting servos for ball capture
-        engine.svLeftBack = engine.hardwareMap.servo.get("svLeftFront");
+       /* engine.svLeftBack = engine.hardwareMap.servo.get("svLeftFront");
         engine.svLeftBack = engine.hardwareMap.servo.get("svRightFront");
         engine.svLeftBack = engine.hardwareMap.servo.get("svLeftBack");
-        engine.svLeftBack = engine.hardwareMap.servo.get("svRightBack");
+        engine.svLeftBack = engine.hardwareMap.servo.get("svRightBack");*/
 
     }
 

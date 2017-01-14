@@ -21,5 +21,9 @@ public class gfp_jewlsLoad extends State{
             engine.dcShooter.setPower(0.0);
             setFinished(true);
         }
+
+        /*if(engine.shooterTouch.isPressed()){
+            Log.i(TAG, "PRESSED");
+        }*/
     }
 }

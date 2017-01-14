@@ -15,7 +15,16 @@ public class gfp_jewlsArmUp extends State {
     @Override
     public void exec() {
 
-        engine.dcArm.setPower(1.0);
+        if(engine.dcArm.getCurrentPosition() <= 900.0) {
+            engine.dcArm.setPower(1.0);
+        }else{
+            engine.dcArm.setPower(0.4);
+        }
+    }
 
+    @Override
+    public void stop() {
+        super.stop();
+        engine.dcArm.setPower(0.0);
     }
 }

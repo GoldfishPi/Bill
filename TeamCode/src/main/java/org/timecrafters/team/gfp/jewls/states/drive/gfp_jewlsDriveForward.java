@@ -11,14 +11,13 @@ public class gfp_jewlsDriveForward extends gfp_jewlsDrive {
     public gfp_jewlsDriveForward(Engine engine){
         this.engine = engine;
     }
+
     @Override
     public void init(){
-        setMotors(engine.dcFrontLeft,1.0,0);
-        setMotors(engine.dcFrontRight,1.0,1);
-        setMotors(engine.dcBackRight,1.0,2);
-        setMotors(engine.dcBackLeft,1.0,3);
-
-        setDistance(500.0);
+        directions[0] = 1;
+        directions[1] = 1;
+        directions[2] = 1;
+        directions[3] = 1;
     }
 
 }

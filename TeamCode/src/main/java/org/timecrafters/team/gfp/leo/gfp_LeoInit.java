@@ -1,6 +1,5 @@
 package org.timecrafters.team.gfp.leo;
 
-import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.I2cAddr;
@@ -43,8 +42,8 @@ public class gfp_LeoInit extends State {
         engine.colorSensorLeft.setI2cAddress(I2cAddr.create7bit(0x26));
 
         //setup distance sensors
-        engine.distanceSensorFront = engine.hardwareMap.i2cDevice.get("distanceSensorFront");
-        engine.distanceSensorRight = engine.hardwareMap.i2cDevice.get("distanceSensorRight");
+        engine.distanceSensorFront = engine.hardwareMap.i2cDevice.get("distanceSensorBack");
+        engine.distanceSensorRight = engine.hardwareMap.i2cDevice.get("distanceSensorBack");
 
         //setup distance sensor readers
         engine.dsFrontReader = new I2cDeviceSynchImpl(engine.distanceSensorFront,new I2cAddr(0x28),false);

@@ -1,7 +1,5 @@
 package org.timecrafters.engine.tests;
 
-import com.qualcomm.robotcore.eventloop.opmode.OpMode;
-
 import org.timecrafters.engine.Engine;
 import org.timecrafters.engine.State;
 
@@ -20,14 +18,14 @@ public class TouchSensorTest extends State {
     @Override
     public void init(){
         //engine.touchSensor = engine.hardwareMap.touchSensor.get("touchSensor");
-        engine.telemetry.addData(TAG+".touchSensor", engine.touchSensor.isPressed());
+        engine.telemetry.addData(TAG+".touchSensor", engine.shooterTouch.isPressed());
     }
 
     @Override
     public void exec(){
 
         engine.telemetry.update();
-        if(engine.touchSensor.isPressed()){
+        if(engine.shooterTouch.isPressed()){
             setFinished(true);
         }
     }

@@ -27,6 +27,8 @@ public abstract class Engine extends RobotPrefs {
     private Thread[] threads = new Thread[100];
     private int threadX = 0;
 
+    public volatile double[][][] cache = new double[100][100][100];
+
 
     private static String TAG = "PROGRAM.ENGINE: ";
     private int x = 0;
@@ -34,6 +36,7 @@ public abstract class Engine extends RobotPrefs {
     private boolean machineFinished = false;
     private boolean opFininished = true;
 
+    //sets processes
     public void init() {
         setProcesses();
         for(int i = 0;i < processes.length;i++) {
@@ -46,6 +49,7 @@ public abstract class Engine extends RobotPrefs {
         }
     }
 
+    //checks if ops are finished
     public void loop() {
         if (!opFininished && !machineFinished) {
             for (int y = 0; y < processes.length; y++) {
@@ -89,39 +93,44 @@ public abstract class Engine extends RobotPrefs {
 
     }
 
+    //kills all processes running when program endes
     @Override
     public void stop(){
-        for(int x = 0;x < processes.length;x++) {
+        for(int x = 0;x < processes.length; x++) {
             for (int y = 0; y < processes.length; y++) {
                 if(processes[x][y] != null) {
-                    processes[x][y].stop();
                     processes[x][y].setFinished(true);
+                    processes[x][y].stop();
                     Log.i(TAG, "KILLED OP : " + "[" + Integer.toString(x) + "]" + "[" + Integer.toString(y) + "]");
+                }else {
+                    break;
                 }
-                break;
             }
         }
     }
 
+    //set processes in extended classes
     public abstract void setProcesses();
 
     public int getProcessIndex(){
         return x;
     }
 
+    //adds the ability to add processes inside states
     public void addProcess(State state){
         int y = 0;
         while (processes[getProcessIndex()][y] != null){
             y++;
         }
         if( y <= 100){
-            processes[getProcessIndex()][y] = state;
+            processes[x][y] = state;
             Log.i(TAG, "ADDED STATE : " + "[" + Integer.toString(getProcessIndex()) + "]" + "[" + Integer.toString(y) + "]");
         }else{
             Log.i(TAG, "FAILED TO ADD STATE AT : " + "[" + Integer.toString(getProcessIndex()) + "]" + "[" + Integer.toString(y) + "]");
         }
     }
 
+    //Allows other states to end processes on the same index
     public void endProcess(int index,State state){
         for(int i = 0; i < processes.length;i++){
             if(processes[index][i] == state){
@@ -131,4 +140,14 @@ public abstract class Engine extends RobotPrefs {
             }
         }
     }
+
+    public void addCacheData(int index, int layer, double data){
+        cache[x][index][layer] = data;
+    }
+
+    public double getCacheData(int index, int layer){
+        return cache[0][index][layer];
+    }
+
+
 }

@@ -23,10 +23,10 @@ public class gfp_LeoServo extends State
     @Override
     public void exec(){
        if(servonum == 0){
-           engine.svleftBack.setPosition(position);
+           engine.svLeftBack.setPosition(position);
        }
         else  if(servonum == 1){
-           engine.svleftBack.setPosition(position);
+           engine.svLeftBack.setPosition(position);
        }
         setFinished(true);
     }

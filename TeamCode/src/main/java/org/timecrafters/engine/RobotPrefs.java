@@ -9,6 +9,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DeviceInterfaceModule;
 import com.qualcomm.robotcore.hardware.I2cDevice;
 import com.qualcomm.robotcore.hardware.I2cDeviceSynch;
+import com.qualcomm.robotcore.hardware.OpticalDistanceSensor;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.hardware.TouchSensor;
 
@@ -44,6 +45,9 @@ public abstract class RobotPrefs extends OpMode {
 
     public volatile I2cDeviceSynch dsFrontReader;
     public volatile I2cDeviceSynch dsRightReader;
+
+    public volatile OpticalDistanceSensor dsFront;
+    public volatile OpticalDistanceSensor dsBack;
 
     public volatile TouchSensor shooterTouch;
 

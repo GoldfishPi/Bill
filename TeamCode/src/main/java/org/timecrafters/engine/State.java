@@ -1,7 +1,5 @@
 package org.timecrafters.engine;
 
-import com.qualcomm.robotcore.eventloop.opmode.OpMode;
-
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -38,7 +36,6 @@ public abstract class State implements Runnable  {
         * Override this and put your ending crap in here
         * */
     }
-
 
     public void setFinished(boolean value){
         isFinished = value;
