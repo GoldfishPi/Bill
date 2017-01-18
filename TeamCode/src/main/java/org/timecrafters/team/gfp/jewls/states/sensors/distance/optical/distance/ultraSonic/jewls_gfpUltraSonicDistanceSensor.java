@@ -1,4 +1,4 @@
-package org.timecrafters.team.gfp.leo.sensor.distance;
+package org.timecrafters.team.gfp.jewls.states.sensors.distance.optical.distance.ultraSonic;
 
 import android.util.Log;
 
@@ -6,10 +6,12 @@ import org.timecrafters.engine.Engine;
 import org.timecrafters.engine.State;
 
 /**
- * Created by t420 on 11/1/2016.
+ * Created by t420 on 1/15/2017.
  */
 
-public class gfp_LeoDistanceSensor extends State {
+
+
+public class jewls_gfpUltraSonicDistanceSensor extends State {
 
     public volatile boolean isFinished = false;
     private byte sensorNum;
@@ -19,18 +21,13 @@ public class gfp_LeoDistanceSensor extends State {
 
     byte unused = -1;
 
-    public gfp_LeoDistanceSensor(Engine engine, double distance,byte sensornum){
+    public jewls_gfpUltraSonicDistanceSensor(Engine engine, double distance) {
         this.engine = engine;
-        this.distance = distance;
-        this.sensorNum = sensornum;
     }
 
     @Override
-    public void init(){
+    public void exec() {
 
-    }
-
-    public void exec(){
         if(sensorNum == 0) {
             frontRangeCache = engine.dsFrontReader.read(0x04, 2);
             //rightRangeCache = engine.dsRightReader.read(0x04,2);
@@ -51,5 +48,6 @@ public class gfp_LeoDistanceSensor extends State {
                 setFinished(true);
             }
         }
+
     }
 }

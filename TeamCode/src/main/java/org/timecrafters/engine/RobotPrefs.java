@@ -4,6 +4,7 @@ package org.timecrafters.engine;
 import android.util.Log;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
+import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DeviceInterfaceModule;
@@ -51,8 +52,8 @@ public abstract class RobotPrefs extends OpMode {
 
     public volatile TouchSensor shooterTouch;
 
-    public volatile Servo svRightFront;
-    public volatile Servo svLeftFront;
+    public volatile CRServo svRightFront;
+    public volatile CRServo svLeftFront;
     public volatile Servo svRightBack;
     public volatile Servo svLeftBack;
 

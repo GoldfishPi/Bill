@@ -14,14 +14,27 @@ public class gfp_jewlsDriveRight extends gfp_jewlsDrive {
     @Override
     public void init() {
 
-        //back left
         directions[0] = 1;
-        //front left
-        directions[1] = -1;
-        //front right
-        directions[2] = 1;
-        //back right
+        speeds[0] = 1.0;
+        directions[1] = 1;
+        speeds[1] = 0.5;
+        directions[2] = -1;
+        speeds[2] = 0.5;
         directions[3] = -1;
+        speeds[3] = 1.0;
+
+        /*
+        * rotate clock wise
+        *
+        directions[0] = 1;
+        speeds[0] = 1.0;
+        directions[1] = 1;
+        speeds[1] = 0.5;
+        directions[2] = -1;
+        speeds[2] = 0.5;
+        directions[3] = -1;
+        speeds[3] = 1.0;
+        * */
 
     }
 }

@@ -21,24 +21,26 @@ public class gfp_jewlsDrive extends State {
     public boolean halt = false;
     private double haltTime;
 
+    public double[] speeds = new double[4];
+
     @Override
     public void exec() {
 
-        engine.dcBackLeft.setPower(directions[0] * 1.0);
-        engine.dcFrontLeft.setPower(directions[1] * 1.0);
-        engine.dcFrontRight.setPower(directions[2] * 1.0);
-        engine.dcBackRight.setPower(directions[3] * 1.0);
+        engine.dcBackLeft.setPower(directions[0] * speeds[0]);
+        engine.dcFrontLeft.setPower(directions[1] * speeds[1]);
+        engine.dcFrontRight.setPower(directions[2] * speeds[2]);
+        engine.dcBackRight.setPower(directions[3] * speeds[3]);
 
     }
 
     @Override
     public void stop(){
 
-        engine.dcFrontRight.setPower(-1.0);
-        engine.dcFrontLeft.setPower(-1.0);
+        engine.dcFrontRight.setPower(0.0);
+        engine.dcFrontLeft.setPower(0.0);
 
-        engine.dcBackLeft.setPower(-1.0);
-        engine.dcBackRight.setPower(-1.0);
+        engine.dcBackLeft.setPower(0.0);
+        engine.dcBackRight.setPower(0.0);
         halt = false;
         Log.i(TAG, "SET MOTORS BACKWARD");
 

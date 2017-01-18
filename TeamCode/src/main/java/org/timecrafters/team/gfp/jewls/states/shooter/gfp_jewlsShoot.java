@@ -25,7 +25,7 @@ public class gfp_jewlsShoot extends State {
             loaded = true;
             engine.dcShooter.setPower(1.0);
             Log.i(TAG, "LOADED");
-            shootTime = System.currentTimeMillis() + 1000.0;
+            shootTime = System.currentTimeMillis() + 500.0;
         }else if(System.currentTimeMillis() >= shootTime && loaded && engine.shooterTouch.isPressed() ){
             engine.dcShooter.setPower(0.0);
             Log.i(TAG, "FIRED");

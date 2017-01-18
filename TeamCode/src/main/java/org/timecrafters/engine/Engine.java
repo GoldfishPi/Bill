@@ -18,7 +18,7 @@ import android.util.Log;
 
  */
 //metron
-    //multi engineered threading reconizing organizing
+//multi engineered threading reconizing organizing
 
 public abstract class Engine extends RobotPrefs {
 
@@ -36,12 +36,14 @@ public abstract class Engine extends RobotPrefs {
     private boolean machineFinished = false;
     private boolean opFininished = true;
 
+    private int threadIndex;
+
     //sets processes
     public void init() {
         setProcesses();
-        for(int i = 0;i < processes.length;i++) {
+        for (int i = 0; i < processes.length; i++) {
             for (int y = 0; y < processes.length; y++) {
-                if(processes[i][y] != null) {
+                if (processes[i][y] != null) {
                     processes[i][y].init();
                     Log.i(TAG, "INIT" + "[" + Integer.toString(i) + "]" + "[" + Integer.toString(y) + "]");
                 }
@@ -73,13 +75,13 @@ public abstract class Engine extends RobotPrefs {
         } else {
             if (processes[x][0] != null) {
                 //set next state.
+                threadIndex = 0;
                 for (int i = 0; i < processes.length; i++) {
                     threads[i] = new Thread(processes[x][i]);
                     threads[i].start();
+                    threadIndex ++;
                 }
                 opFininished = false;
-
-
                 currentProcess = x;
                 Log.i(TAG, "Started State : " + Integer.toString(x));
 
@@ -95,14 +97,14 @@ public abstract class Engine extends RobotPrefs {
 
     //kills all processes running when program endes
     @Override
-    public void stop(){
-        for(int x = 0;x < processes.length; x++) {
+    public void stop() {
+        for (int x = 0; x < processes.length; x++) {
             for (int y = 0; y < processes.length; y++) {
-                if(processes[x][y] != null) {
+                if (processes[x][y] != null) {
                     processes[x][y].setFinished(true);
                     processes[x][y].stop();
                     Log.i(TAG, "KILLED OP : " + "[" + Integer.toString(x) + "]" + "[" + Integer.toString(y) + "]");
-                }else {
+                } else {
                     break;
                 }
             }
@@ -112,28 +114,28 @@ public abstract class Engine extends RobotPrefs {
     //set processes in extended classes
     public abstract void setProcesses();
 
-    public int getProcessIndex(){
+    public int getProcessIndex() {
         return x;
     }
 
     //adds the ability to add processes inside states
-    public void addProcess(State state){
-        int y = 0;
-        while (processes[getProcessIndex()][y] != null){
-            y++;
+    public void addProcess(State state) {
+        for(int i = 0; i < processes.length;i ++){
+            if(processes[x][i] == null || processes[x][i].isFinished){
+                processes[x][i] = state;
+                Thread thread = new Thread(processes[x][i]);
+                thread.start();
+                Log.i(TAG, "ADDED THREAD AT : " + "[" + Integer.toString(getProcessIndex()) + "]" + "[" + Integer.toString(i) + "]");
+                break;
+            }
         }
-        if( y <= 100){
-            processes[x][y] = state;
-            Log.i(TAG, "ADDED STATE : " + "[" + Integer.toString(getProcessIndex()) + "]" + "[" + Integer.toString(y) + "]");
-        }else{
-            Log.i(TAG, "FAILED TO ADD STATE AT : " + "[" + Integer.toString(getProcessIndex()) + "]" + "[" + Integer.toString(y) + "]");
-        }
+
     }
 
     //Allows other states to end processes on the same index
-    public void endProcess(int index,State state){
-        for(int i = 0; i < processes.length;i++){
-            if(processes[index][i] == state){
+    public void endProcess(int index, State state) {
+        for (int i = 0; i < processes.length; i++) {
+            if (processes[index][i] == state) {
                 processes[index][i].setFinished(true);
                 Log.i(TAG, "FORCED STOP AT : " + "[" + Integer.toString(getProcessIndex()) + "]" + "[" + Integer.toString(i) + "]");
                 break;
@@ -141,11 +143,11 @@ public abstract class Engine extends RobotPrefs {
         }
     }
 
-    public void addCacheData(int index, int layer, double data){
+    public void addCacheData(int index, int layer, double data) {
         cache[x][index][layer] = data;
     }
 
-    public double getCacheData(int index, int layer){
+    public double getCacheData(int index, int layer) {
         return cache[0][index][layer];
     }
 

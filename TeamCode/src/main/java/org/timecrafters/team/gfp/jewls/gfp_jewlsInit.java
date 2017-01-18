@@ -38,6 +38,9 @@ public class gfp_jewlsInit extends State {
         engine.dcArm = engine.hardwareMap.dcMotor.get("dcArm");
         engine.dcShooter = engine.hardwareMap.dcMotor.get("dcShooter");
 
+        //setting shooter run mode
+        engine.dcShooter.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+
         //setting arm and shooter run mode
         engine.dcArm.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         engine.dcShooter.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
@@ -54,6 +57,8 @@ public class gfp_jewlsInit extends State {
         engine.svLeftBack = engine.hardwareMap.servo.get("svLeftBack");
         engine.svLeftBack = engine.hardwareMap.servo.get("svRightBack");*/
 
+        engine.svRightFront = engine.hardwareMap.crservo.get("svRightFront");
+        engine.svLeftFront = engine.hardwareMap.crservo.get("svLeftFront");
     }
 
     @Override
