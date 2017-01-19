@@ -1,5 +1,7 @@
 package org.timecrafters.team.gfp.jewls.states.arm;
 
+import android.util.Log;
+
 import org.timecrafters.engine.Engine;
 import org.timecrafters.engine.State;
 
@@ -8,17 +10,29 @@ import org.timecrafters.engine.State;
  */
 
 public class gfp_jewlsArmUp extends State {
-    public gfp_jewlsArmUp(Engine engine) {
+    private double startingPos;
+    private double endTime;
+    private boolean firstRun = true;
+    private double startTime;
+
+    public gfp_jewlsArmUp(Engine engine, double endTime) {
         this.engine = engine;
+        this.endTime = endTime;
     }
 
     @Override
     public void exec() {
 
-        if(engine.dcArm.getCurrentPosition() >= 0) {
+        if (firstRun){
+            startTime = System.currentTimeMillis();
+            firstRun = false;
+        }
+        Log.i(TAG, Double.toString(System.currentTimeMillis() -( startTime + endTime)));
+        if(System.currentTimeMillis() -( startTime + endTime) <= 0) {
             engine.dcArm.setPower(1.0);
-        }else{
-            engine.dcArm.setPower(0.4);
+            Log.i(TAG, Double.toString(System.currentTimeMillis() - (startTime + endTime)));
+        }else {
+            engine.dcArm.setPower(0.0);
             setFinished(true);
         }
     }

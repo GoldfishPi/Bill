@@ -34,45 +34,45 @@ public class teleop extends State {
 
         if(engine.gamepad1.dpad_up){
             directions[0] = 1;
-            speeds[0] = 1.0;
+            speeds[0] = 0.5;
             directions[1] = 1;
-            speeds[1] = 0.5;
+            speeds[1] = 1.0;
             directions[2] = 1;
-            speeds[2] = 0.5;
+            speeds[2] = 1.0;
             directions[3] = 1;
-            speeds[3] = 1.0;
+            speeds[3] = 0.5;
         }else if(engine.gamepad1.dpad_down){
 
             directions[0] = -1;
             speeds[0] = 1.0;
             directions[1] = -1;
-            speeds[1] = 0.5;
+            speeds[1] = 1.0;
             directions[2] = -1;
-            speeds[2] = 0.5;
+            speeds[2] = 1.0;
             directions[3] = -1;
-            speeds[3] = 1.0;
+            speeds[3] = 0.5;
 
         }else if(engine.gamepad1.dpad_right){
 
             directions[0] = 1;
-            speeds[0] = 1.0;
+            speeds[0] = 0.5;
             directions[1] = 1;
-            speeds[1] = 0.3;
+            speeds[1] = 1.0;
             directions[2] = -1;
-            speeds[2] = 0.3;
+            speeds[2] = 1.0;
             directions[3] = -1;
-            speeds[3] = 1.0;
+            speeds[3] = 0.5;
 
         }else if(engine.gamepad1.dpad_left){
 
             directions[0] = -1;
-            speeds[0] = 1.0;
+            speeds[0] = 0.5;
             directions[1] = -1;
-            speeds[1] = 0.5;
+            speeds[1] = 1.0;
             directions[2] = 1;
-            speeds[2] = 0.5;
+            speeds[2] = 1.0;
             directions[3] = 1;
-            speeds[3] = 1.0;
+            speeds[3] = 0.5;
 
         }else{
             directions[0] = 1;
@@ -104,7 +104,7 @@ public class teleop extends State {
 
         if(engine.gamepad1.right_bumper){
             engine.svRightFront.setPower(-1.0);
-            engine.svLeftFront.setPower(-1.0);
+            engine.svLeftFront.setPower(1.0);
         }else{
             engine.svRightFront.setPower(0.0);
             engine.svLeftFront.setPower(0.0);

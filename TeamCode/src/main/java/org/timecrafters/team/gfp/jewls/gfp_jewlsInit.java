@@ -34,6 +34,9 @@ public class gfp_jewlsInit extends State {
         //reservse front right motor;
         engine.dcFrontRight.setDirection(DcMotorSimple.Direction.REVERSE);
 
+        //reverse back left motor
+        engine.dcBackLeft.setDirection(DcMotorSimple.Direction.REVERSE);
+
         //setting arm and shooter variables
         engine.dcArm = engine.hardwareMap.dcMotor.get("dcArm");
         engine.dcShooter = engine.hardwareMap.dcMotor.get("dcShooter");

@@ -16,7 +16,7 @@ Jewls is the package for the time crafter's 2016-2017 robot.
 ->Engines
     -This is where all engines or runtimes should be kept. everything in here should inherit Engine from the timecrafters.engine.Engine
 ->States
-    -This is where all the staes which get compiled into the engines are held. Everything within here should inherit timecrafters.engine.State
+    -This is where all the staes which get compciled into the engines are held. Everything within here should inherit timecrafters.engine.State
     ->drive
         -All states concerning the drive train should be kept in this package
     ->logic
