@@ -1,7 +1,5 @@
 package org.timecrafters.team.gfp.jewls.states.arm;
 
-import android.util.Log;
-
 import org.timecrafters.engine.Engine;
 import org.timecrafters.engine.State;
 
@@ -34,9 +32,8 @@ public class gfp_jewlsArmDown extends State{
         }
         if(System.currentTimeMillis() -( startTime + endTime) <= 0) {
             engine.dcArm.setPower(-1.0);
-            Log.i(TAG, Double.toString(System.currentTimeMillis() - (startTime + endTime)));
         }else {
-            engine.dcArm.setPower(0.0);
+            engine.dcArm.setPower(0.1);
             setFinished(true);
         }
 

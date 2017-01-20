@@ -7,20 +7,21 @@ import org.timecrafters.team.gfp.jewls.states.drive.encoders.gfp_jewlsDriveEncod
  * Created by t420 on 1/18/2017.
  */
 
-public class gfp_jewlsDriveEncodersRotate extends gfp_jewlsDriveEncoders {
+public class gfp_jewlsDriveEncodersRotateLeft extends gfp_jewlsDriveEncoders {
 
-    public gfp_jewlsDriveEncodersRotate(Engine engine,double runTime) {
+    public gfp_jewlsDriveEncodersRotateLeft(Engine engine, double endPosition , double runTime) {
         this.engine = engine;
-        this.runForStop = runTime;
+        this.runTime = runTime;
+        this.endPosition = endPosition;
     }
 
     @Override
     public void init() {
-        this.endPosition = 1000.0;
+        this.checkMotor = engine.dcBackRight;
         directions[0] = -1;
-        speeds[0] = 0.7;
+        speeds[0] = 0.5;
         directions[1] = -1;
-        speeds[1] = 0.3;
+        speeds[1] = 1.0;
         directions[2] = 1;
         speeds[2] = 1.0;
         directions[3] = 1;

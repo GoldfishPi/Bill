@@ -2,6 +2,7 @@ package org.timecrafters.team.gfp.jewls;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
+import com.qualcomm.robotcore.hardware.I2cAddr;
 
 import org.timecrafters.engine.Engine;
 import org.timecrafters.engine.State;
@@ -62,6 +63,11 @@ public class gfp_jewlsInit extends State {
 
         engine.svRightFront = engine.hardwareMap.crservo.get("svRightFront");
         engine.svLeftFront = engine.hardwareMap.crservo.get("svLeftFront");
+
+        engine.colorSensorRight = engine.hardwareMap.colorSensor.get("colorSensor");
+
+        //set color sensor adress
+        engine.colorSensorRight.setI2cAddress(I2cAddr.create8bit(0x3C));
     }
 
     @Override

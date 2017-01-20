@@ -56,11 +56,11 @@ public class teleop extends State {
 
             directions[0] = 1;
             speeds[0] = 0.5;
-            directions[1] = 1;
+            directions[1] = -1;
             speeds[1] = 1.0;
             directions[2] = -1;
             speeds[2] = 1.0;
-            directions[3] = -1;
+            directions[3] = 1;
             speeds[3] = 0.5;
 
         }else if(engine.gamepad1.dpad_left){
