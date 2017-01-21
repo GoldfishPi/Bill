@@ -31,9 +31,9 @@ public class gfp_jewlsArmDown extends State{
             firstRun = false;
         }
         if(System.currentTimeMillis() -( startTime + endTime) <= 0) {
-            engine.dcArm.setPower(-1.0);
+            engine.dcArm.setPower(-0.6);
         }else {
-            engine.dcArm.setPower(0.1);
+            engine.dcArm.setPower(0.0);
             setFinished(true);
         }
 

@@ -1,7 +1,5 @@
 package org.timecrafters.team.gfp.jewls.states.sensors.distance.optical;
 
-import android.util.Log;
-
 import org.timecrafters.engine.Engine;
 import org.timecrafters.engine.State;
 
@@ -16,8 +14,8 @@ public class gfp_jewlsOpticalDistanceSensor extends State {
 
     @Override
     public void exec() {
-        Log.i(TAG, Double.toString(engine.dsFront.getRawLightDetected()));
+        /*Log.i(TAG, Double.toString(engine.dsFront.getRawLightDetected()));
         engine.telemetry.addData("dsFront", engine.dsFront.getLightDetected());
-        engine.telemetry.update();
+        engine.telemetry.update();*/
     }
 }

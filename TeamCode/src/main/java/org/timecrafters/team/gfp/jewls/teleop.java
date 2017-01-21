@@ -18,8 +18,12 @@ public class teleop extends State {
     private boolean loaded = true;
     private double shootTime;
 
+    private double speed = 0.0;
+
     int[] directions = new int[4];
     double[] speeds = new double[4];
+
+    boolean pushed = false;
 
     double startingPos;
 
@@ -52,27 +56,37 @@ public class teleop extends State {
             directions[3] = -1;
             speeds[3] = 0.5;
 
+        }else if(engine.gamepad1.dpad_left){
+
+
+            directions[0] = -1;
+            speeds[0] = 0.9;
+            directions[1] = -1;
+            speeds[1] = 1.0;
+            directions[2] = 1;
+            speeds[2] = 0.9;
+            directions[3] = 1;
+            speeds[3] = 1.0;
+
         }else if(engine.gamepad1.dpad_right){
 
             directions[0] = 1;
-            speeds[0] = 0.5;
-            directions[1] = -1;
-            speeds[1] = 1.0;
+            speeds[0] = 1.0;
+            directions[1] = 1;
+            speeds[1] = 0.9;
             directions[2] = -1;
             speeds[2] = 1.0;
-            directions[3] = 1;
-            speeds[3] = 0.5;
+            directions[3] = -1;
+            speeds[3] = 0.9;
 
-        }else if(engine.gamepad1.dpad_left){
-
-            directions[0] = -1;
+            /*directions[0] = -1;
             speeds[0] = 0.5;
             directions[1] = -1;
             speeds[1] = 1.0;
             directions[2] = 1;
             speeds[2] = 1.0;
-            directions[3] = 1;
-            speeds[3] = 0.5;
+            directions[3] = 1;*/
+
 
         }else{
             directions[0] = 1;
@@ -99,15 +113,32 @@ public class teleop extends State {
         }else if(engine.gamepad1.a){
             engine.dcArm.setPower(0.5);
         }else {
-            engine.dcArm.setPower(0.01);
+            engine.dcArm.setPower(0.0);
         }
 
+        engine.telemetry.addData("Speed", speed);
+        engine.telemetry.update();
         if(engine.gamepad1.right_bumper){
             engine.svRightFront.setPower(-1.0);
             engine.svLeftFront.setPower(1.0);
         }else{
             engine.svRightFront.setPower(0.0);
             engine.svLeftFront.setPower(0.0);
+        }
+
+        if(engine.gamepad1.right_trigger >= 0.2){
+            if(!pushed) {
+                speed -= 0.1;
+                pushed = true;
+            }
+        }else if (engine.gamepad1.right_bumper ){
+            if(!pushed) {
+                speed += 0.1;
+                pushed = true;
+            }
+
+        }else{
+            pushed = false;
         }
 
     }

@@ -3,6 +3,7 @@ package org.timecrafters.team.gfp.jewls;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.I2cAddr;
+import com.qualcomm.robotcore.hardware.I2cDeviceSynchImpl;
 
 import org.timecrafters.engine.Engine;
 import org.timecrafters.engine.State;
@@ -17,8 +18,13 @@ public class gfp_jewlsInit extends State {
         this.engine = engine;
     }
 
+    I2cAddr RANGE1ADDRESS = new I2cAddr(0x14); //Default I2C address for MR Range (7-bit)
+
+
     @Override
     public void init() {
+
+
 
         //Setting Drive train variables
         engine.dcFrontRight = engine.hardwareMap.dcMotor.get("dcFrontRight");
@@ -63,6 +69,12 @@ public class gfp_jewlsInit extends State {
 
         engine.svRightFront = engine.hardwareMap.crservo.get("svRightFront");
         engine.svLeftFront = engine.hardwareMap.crservo.get("svLeftFront");
+
+        engine.dsBack = engine.hardwareMap.opticalDistanceSensor.get("dsBack");
+        engine.dsFront = engine.hardwareMap.i2cDevice.get("dsFront");
+
+        engine.dsFrontReader = new  I2cDeviceSynchImpl(engine.dsFront, RANGE1ADDRESS, false);
+        engine.dsFrontReader.engage();
 
         engine.colorSensorRight = engine.hardwareMap.colorSensor.get("colorSensor");
 

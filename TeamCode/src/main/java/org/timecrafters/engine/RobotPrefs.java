@@ -47,7 +47,7 @@ public abstract class RobotPrefs extends OpMode {
     public volatile I2cDeviceSynch dsFrontReader;
     public volatile I2cDeviceSynch dsRightReader;
 
-    public volatile OpticalDistanceSensor dsFront;
+    public volatile I2cDevice dsFront;
     public volatile OpticalDistanceSensor dsBack;
 
     public volatile TouchSensor shooterTouch;
@@ -58,6 +58,9 @@ public abstract class RobotPrefs extends OpMode {
     public volatile Servo svLeftBack;
 
     public volatile DcMotor[] motors = new DcMotor[12];
+
+    public static final int RANGE1_REG_START = 0x04; //Register to start reading
+    public static final int RANGE1_READ_LENGTH = 2;
 
 
 

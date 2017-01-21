@@ -18,16 +18,17 @@ public class gfp_jewlsArmInit extends State {
     @Override
     public void init() {
         double time = System.currentTimeMillis();
-        while (engine.dcArm.getCurrentPosition() <= 1000 && System.currentTimeMillis() + 10000.0 <= time) {
+        while ((time + 1000.0) - System.currentTimeMillis() <= 0) {
             engine.dcArm.setPower(1.0);
         }
         engine.dcArm.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        engine.dcArm.setPower(0.1);
+        engine.dcArm.setPower(0.3);
         engine.dcArm.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
     }
 
     @Override
     public void exec() {
+        engine.dcArm.setPower(0.0);
         setFinished(true);
     }
 }

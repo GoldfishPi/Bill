@@ -29,7 +29,7 @@ public class gfp_jewlsArmUp extends State {
         if(System.currentTimeMillis() -( startTime + endTime) <= 0) {
             engine.dcArm.setPower(1.0);
         }else {
-            engine.dcArm.setPower(0.1);
+            engine.dcArm.setPower(0.01);
             setFinished(true);
         }
     }
