@@ -1,4 +1,4 @@
-package org.timecrafters.team.gfp.jewls.engines;
+package org.timecrafters.team.gfp.jewls.engines.OldEngines;
 
 import org.timecrafters.engine.Engine;
 import org.timecrafters.team.gfp.jewls.gfp_jewlsInit;
@@ -8,6 +8,7 @@ import org.timecrafters.team.gfp.jewls.states.drive.encoders.gfp_jewlsDriveForwa
 import org.timecrafters.team.gfp.jewls.states.drive.encoders.turn.gfp_jewlsDriveEncodersRotateLeft;
 import org.timecrafters.team.gfp.jewls.states.drive.encoders.turn.gfp_jewlsDriveEncodersRotateRight;
 import org.timecrafters.team.gfp.jewls.states.drive.sensors.gfp_jewlsDriveToDistance;
+import org.timecrafters.team.gfp.jewls.states.shooter.gfp_jelsShooterInit;
 import org.timecrafters.team.gfp.jewls.states.shooter.gfp_jewlsLoad;
 
 /**
@@ -23,6 +24,7 @@ public class gfp_jewlsEngine extends Engine {
         processes[0][0] = new gfp_jewlsInit(this);
         processes[1][0] = new gfp_jewlsLoad(this);
         processes[1][1] = new gfp_jewlsArmInit(this);
+        processes[1][2] = new gfp_jelsShooterInit(this);
 
         /*processes[2][0] = new gfp_jewlsArmDown(this, 1500.0);
         processes[3][0] = new gfp_jewlsShoot(this);

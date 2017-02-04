@@ -45,14 +45,12 @@ public class gfp_jewlsInit extends State {
         engine.dcBackLeft.setDirection(DcMotorSimple.Direction.REVERSE);
 
         //setting arm and shooter variables
-        engine.dcArm = engine.hardwareMap.dcMotor.get("dcArm");
         engine.dcShooter = engine.hardwareMap.dcMotor.get("dcShooter");
 
         //setting shooter run mode
         engine.dcShooter.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
         //setting arm and shooter run mode
-        engine.dcArm.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         engine.dcShooter.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
         //setting touch sensor variables
@@ -80,6 +78,11 @@ public class gfp_jewlsInit extends State {
 
         //set color sensor adress
         engine.colorSensorRight.setI2cAddress(I2cAddr.create8bit(0x3C));
+
+        engine.buttonPresser = engine.hardwareMap.servo.get("buttonPresser");
+
+        engine.bottumArm = engine.hardwareMap.servo.get("bottumArm");
+        engine.topArm = engine.hardwareMap.servo.get("topArm");
     }
 
     @Override

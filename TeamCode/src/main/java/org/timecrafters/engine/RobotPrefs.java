@@ -62,6 +62,11 @@ public abstract class RobotPrefs extends OpMode {
     public static final int RANGE1_REG_START = 0x04; //Register to start reading
     public static final int RANGE1_READ_LENGTH = 2;
 
+    public volatile Servo buttonPresser;
+
+    public volatile Servo topArm;
+    public volatile Servo bottumArm;
+
 
 
 
