@@ -3,7 +3,7 @@ package org.timecrafters.team.gfp.jewls.engines.OldEngines;
 import org.timecrafters.engine.Engine;
 import org.timecrafters.team.gfp.jewls.gfp_jewlsInit;
 import org.timecrafters.team.gfp.jewls.states.arm.gfp_jewlsArmInit;
-import org.timecrafters.team.gfp.jewls.states.drive.encoders.driveToColor.gfp_jewlsDriveToRed;
+import org.timecrafters.team.gfp.jewls.states.drive.driveToColor.gfp_jewlsDriveToRed;
 import org.timecrafters.team.gfp.jewls.states.drive.encoders.gfp_jewlsDriveForwardEncoders;
 import org.timecrafters.team.gfp.jewls.states.drive.encoders.turn.gfp_jewlsDriveEncodersRotateLeft;
 import org.timecrafters.team.gfp.jewls.states.drive.encoders.turn.gfp_jewlsDriveEncodersRotateRight;
@@ -45,7 +45,7 @@ public class gfp_jewlsEngine extends Engine {
         processes[6][0] = new gfp_jewlsDriveToDistance(this, 16);
         processes[7][0] = new gfp_jewlsDriveEncodersRotateRight(this, 500.0, 1000.0);
         processes[8][0] = new gfp_jewlsDriveToDistance(this, 8);
-        processes[9][0] = new gfp_jewlsDriveToRed(this);
+        processes[9][0] = new gfp_jewlsDriveToRed(this,0.25,0.2);
         processes[10][0] = new gfp_jewlsDriveEncodersRotateRight(this, 500, 1000.0);
 
 

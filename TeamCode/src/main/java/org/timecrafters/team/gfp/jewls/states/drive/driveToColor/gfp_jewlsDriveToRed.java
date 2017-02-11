@@ -1,4 +1,4 @@
-package org.timecrafters.team.gfp.jewls.states.drive.encoders.driveToColor;
+package org.timecrafters.team.gfp.jewls.states.drive.driveToColor;
 
 import org.timecrafters.engine.Engine;
 import org.timecrafters.engine.State;
@@ -15,28 +15,34 @@ public class gfp_jewlsDriveToRed extends State {
     public boolean halt = false;
     private double haltTime;
 
+    private double threshhold;
+
+    private double speed;
+
     public double[] speeds = new double[4];
 
-    public gfp_jewlsDriveToRed(Engine engine){
+    public gfp_jewlsDriveToRed(Engine engine, double speed, double threshhold){
         this.engine = engine;
+        this.speed = speed;
+        this.threshhold = threshhold;
     }
 
     @Override
     public void init() {
-        directions[0] = -1;
-        speeds[0] = 0.5;
-        directions[1] = -1;
-        speeds[1] = 0.5;
-        directions[2] = -1;
-        speeds[2] = 0.5;
-        directions[3] = -1;
-        speeds[3] = 0.5;
+        directions[0] = 1;
+        speeds[0] = speed;
+        directions[1] = 1;
+        speeds[1] = speed;
+        directions[2] = 1;
+        speeds[2] = speed;
+        directions[3] = 1;
+        speeds[3] = speed;
     }
 
     @Override
     public void exec() {
         engine.colorSensorRight.enableLed(true);
-        if(engine.colorSensorRight.red() >= 3.0){
+        if(engine.colorSensorRight.red() >= threshhold){
             engine.dcFrontRight.setPower(0.0);
             engine.dcFrontLeft.setPower(0.0);
 

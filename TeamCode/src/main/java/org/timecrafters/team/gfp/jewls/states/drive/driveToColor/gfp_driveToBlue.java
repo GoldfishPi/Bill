@@ -1,4 +1,4 @@
-package org.timecrafters.team.gfp.jewls.states.drive.encoders.driveToColor;
+package org.timecrafters.team.gfp.jewls.states.drive.driveToColor;
 
 import org.timecrafters.engine.Engine;
 import org.timecrafters.engine.State;
@@ -13,22 +13,25 @@ public class gfp_driveToBlue extends State {
     public boolean halt = false;
     private double haltTime;
 
+    private double speed;
+
     public double[] speeds = new double[4];
 
-    public gfp_driveToBlue(Engine engine) {
+    public gfp_driveToBlue(Engine engine, double speed) {
         this.engine = engine;
+        this.speed = speed;
     }
 
     @Override
     public void init() {
         directions[0] = 1;
-        speeds[0] = 0.5;
+        speeds[0] = speed;
         directions[1] = 1;
-        speeds[1] = 0.5;
+        speeds[1] = speed;
         directions[2] = 1;
-        speeds[2] = 0.5;
+        speeds[2] = speed;
         directions[3] = 1;
-        speeds[3] = 0.5;
+        speeds[3] = speed;
     }
 
     @Override

@@ -18,7 +18,8 @@ public class gfp_jewlsInit extends State {
         this.engine = engine;
     }
 
-    I2cAddr RANGE1ADDRESS = new I2cAddr(0x14); //Default I2C address for MR Range (7-bit)
+    I2cAddr RANGE1ADDRESS = new I2cAddr(0x13); //Default I2C address for MR Range (7-bit)
+    I2cAddr RANGE2ADDRESS = new I2cAddr(0x14);
 
 
     @Override
@@ -39,10 +40,11 @@ public class gfp_jewlsInit extends State {
         engine.dcBackLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
         //reservse front right motor;
-        engine.dcFrontRight.setDirection(DcMotorSimple.Direction.REVERSE);
+        //engine.dcFrontRight.setDirection(DcMotorSimple.Direction.REVERSE);
 
         //reverse back left motor
         engine.dcBackLeft.setDirection(DcMotorSimple.Direction.REVERSE);
+        engine.dcFrontLeft.setDirection(DcMotorSimple.Direction.REVERSE);
 
         //setting arm and shooter variables
         engine.dcShooter = engine.hardwareMap.dcMotor.get("dcShooter");
@@ -56,23 +58,17 @@ public class gfp_jewlsInit extends State {
         //setting touch sensor variables
         engine.shooterTouch = engine.hardwareMap.touchSensor.get("shooterTouch");
 
-        //setting optical distance sensor
-        engine.dsBack = engine.hardwareMap.opticalDistanceSensor.get("dsBack");
-
-        //setting servos for ball capture
-       /* engine.svLeftBack = engine.hardwareMap.servo.get("svLeftFront");
-        engine.svLeftBack = engine.hardwareMap.servo.get("svRightFront");
-        engine.svLeftBack = engine.hardwareMap.servo.get("svLeftBack");
-        engine.svLeftBack = engine.hardwareMap.servo.get("svRightBack");*/
-
         engine.svRightFront = engine.hardwareMap.crservo.get("svRightFront");
         engine.svLeftFront = engine.hardwareMap.crservo.get("svLeftFront");
 
-        engine.dsBack = engine.hardwareMap.opticalDistanceSensor.get("dsBack");
+        engine.dsBack = engine.hardwareMap.i2cDevice.get("dsBack");
         engine.dsFront = engine.hardwareMap.i2cDevice.get("dsFront");
 
         engine.dsFrontReader = new  I2cDeviceSynchImpl(engine.dsFront, RANGE1ADDRESS, false);
         engine.dsFrontReader.engage();
+
+        engine.dsBackReader = new I2cDeviceSynchImpl(engine.dsBack,RANGE2ADDRESS,false);
+        engine.dsBackReader.engage();
 
         engine.colorSensorRight = engine.hardwareMap.colorSensor.get("colorSensor");
 

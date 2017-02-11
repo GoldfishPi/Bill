@@ -17,13 +17,19 @@ public class gfp_jewlsDeploy extends State {
 
     private boolean firstRun = true;
     private double startingPos;
-    private double turnPos;
+    private int turnPos;
 
-    public gfp_jewlsDeploy(Engine engine, Container container,double turnPos) {
+    private boolean rightFinished = false;
+    private boolean leftFinished = false;
+
+    private double power;
+
+    public gfp_jewlsDeploy(Engine engine, Container container,int turnPos,double power) {
 
         this.engine = engine;
         this.container = container;
         this.turnPos = turnPos;
+        this.power = power;
 
     }
 
@@ -36,20 +42,19 @@ public class gfp_jewlsDeploy extends State {
 
     @Override
     public void exec() {
-        if(firstRun){
 
-            startingPos = leftMotor.getCurrentPosition();
+        rightMotor.setTargetPosition(turnPos);
+        leftMotor.setTargetPosition(turnPos);
 
-            firstRun = false;
+        rightMotor.setPower(power);
+        leftMotor.setPower(power);
+
+        if(rightMotor.isBusy() && leftMotor.isBusy()){
+
+
+        }else{
+            setFinished(true);
         }
 
-        if(leftMotor.getCurrentPosition() + turnPos >= 0) {
-            leftMotor.setPower(-1.0);
-            rightMotor.setPower(-1.0);
-        }
-        else{
-            leftMotor.setPower(0);
-            rightMotor.setPower(0);
-        }
     }
 }

@@ -1,7 +1,5 @@
 package org.timecrafters.team.gfp.jewls.states.drive.sensors;
 
-import android.util.Log;
-
 import org.timecrafters.engine.Engine;
 import org.timecrafters.engine.State;
 
@@ -27,7 +25,7 @@ public class gfp_jewlsDriveSenosr extends State {
     public void exec() {
 
         //if(engine.dsFront.getRawLightDetected());
-        Log.i(TAG, Double.toString(engine.dsBack.getLightDetected()));
+        /*Log.i(TAG, Double.toString(engine.dsBack.getLightDetected()));
 
         if(engine.dsBack.getLightDetected() <= 0.03){
 
@@ -43,7 +41,7 @@ public class gfp_jewlsDriveSenosr extends State {
             engine.dcBackLeft.setPower(0.0);
             engine.dcBackRight.setPower(0.0);
             setFinished(true);
-        }
+        }*/
 
         /*frontRangeCache = engine.dsFrontReader.read(engine.RANGE1_REG_START, engine.RANGE1_READ_LENGTH);
 

@@ -1,5 +1,7 @@
 package org.timecrafters.team.gfp.jewls.states.arm.servo;
 
+import android.util.Log;
+
 import org.timecrafters.engine.Engine;
 import org.timecrafters.engine.State;
 
@@ -7,11 +9,15 @@ import org.timecrafters.engine.State;
  * Created by t420 on 1/30/2017.
  */
 
-public class gfp_jewlsArmUpServo extends State{
+public class gfp_jewlsArmServo extends State {
 
-    public gfp_jewlsArmUpServo(Engine engine) {
+    double pos;
+
+    public gfp_jewlsArmServo(Engine engine, double position) {
         this.engine = engine;
+        this.pos = position;
     }   //swosodnf asiudmfna0s
+
     @Override
     public void init() {
 
@@ -27,14 +33,17 @@ public class gfp_jewlsArmUpServo extends State{
     @Override
     public void exec() {
 
-        engine.topArm.setPosition(180);
-        engine.bottumArm.setPosition(180);
+        engine.topArm.setPosition(pos);
+        engine.bottumArm.setPosition(pos);
 
-        //Yog soron
-        // Doom sayer
-        //remind me to stop writing random things like a crazzy person.
+        Log.i(TAG, Double.toString(engine.topArm.getPosition()));
 
-        //
+
+        setFinished(true);
+
+        if (engine.topArm.getPosition() == pos && engine.bottumArm.getPosition() == pos) {
+            setFinished(true);
+        }
     }
 
     @Override

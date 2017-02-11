@@ -34,7 +34,7 @@ public class gfp_jewlsDriveWall extends State {
 
         engine.telemetry.addData("Ultra Sonic", frontRangeCache[0] & 0xFF);
         engine.telemetry.addData("ODS", frontRangeCache[1] & 0xFF);
-        engine.telemetry.addData("BACK ODS", engine.dsBack.getLightDetected());
+        //engine.telemetry.addData("BACK ODS", engine.dsBack.getLightDetected());
         engine.telemetry.update();
 
         if (frontRangeCache[0] > balanceHigh) {

@@ -14,7 +14,7 @@ import org.timecrafters.engine.State;
 public class jewls_gfpUltraSonicDistanceSensor extends State {
 
     public volatile boolean isFinished = false;
-    private byte sensorNum;
+    private byte sensorNum = 0;
     public double distance;
     byte[] frontRangeCache;
     byte[] rightRangeCache;
