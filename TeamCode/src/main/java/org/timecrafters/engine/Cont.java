@@ -7,7 +7,7 @@ import java.util.Hashtable;
  * Created by t420 on 1/27/2017.
  */
 
-public class Container {
+public class Cont {
 
     Hashtable hashtable = new Hashtable();
 

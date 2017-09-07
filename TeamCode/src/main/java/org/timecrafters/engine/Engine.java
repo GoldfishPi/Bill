@@ -17,8 +17,7 @@ import android.util.Log;
 ######### ########### ########## ##########
 
  */
-//metron
-//multi engineered threading reconizing organizing
+
 
 public abstract class Engine extends RobotPrefs {
 
@@ -26,6 +25,11 @@ public abstract class Engine extends RobotPrefs {
     public State[][] processes = new State[100][100];
     private Thread[] threads = new Thread[100];
     private int threadX = 0;
+
+    private boolean expandingArray;
+
+    private int stateX = 0;
+    private int stateY = 0;
 
     public volatile double[][][] cache = new double[100][100][100];
 
@@ -41,23 +45,28 @@ public abstract class Engine extends RobotPrefs {
     //sets processes
     public void init() {
         setProcesses();
-        for (int i = 0; i < processes.length; i++) {
-            for (int y = 0; y < processes.length; y++) {
-                if (processes[i][y] != null) {
-                    processes[i][y].init();
-                    Log.i(TAG, "INIT" + "[" + Integer.toString(i) + "]" + "[" + Integer.toString(y) + "]");
+        Log.i(TAG, Integer.toString(processes.length));
+        if(!expandingArray) {
+            for (int i = 0; i < processes.length; i++) {
+                for (int y = 0; y < processes.length; y++) {
+                    if (processes[i][y] != null) {
+                        processes[i][y].init();
+                        Log.i(TAG, "INIT" + "[" + Integer.toString(i) + "]" + "[" + Integer.toString(y) + "]");
+                    }
                 }
             }
         }
+
     }
 
     //checks if ops are finished
     public void loop() {
         if (!opFininished && !machineFinished) {
+
             for (int y = 0; y < processes.length; y++) {
 
                 if (processes[x][y] != null) {
-                    if (processes[x][y].isFinished) {
+                    if (processes[x][y].getIsFinished()) {
                         opFininished = true;
                         Log.i(TAG, "FINISHED OP : " + "[" + Integer.toString(x) + "]" + "[" + Integer.toString(y) + "]");
                     } else {
@@ -71,6 +80,7 @@ public abstract class Engine extends RobotPrefs {
             if (opFininished) {
                 x++;
             }
+
 
         } else {
             if (processes[x][0] != null) {
@@ -91,7 +101,9 @@ public abstract class Engine extends RobotPrefs {
                 machineFinished = true;
                 stop();
             }
+
         }
+
 
     }
 
@@ -119,9 +131,12 @@ public abstract class Engine extends RobotPrefs {
     }
 
     //adds the ability to add processes inside states
-    public void addProcess(State state) {
+    public void addInLineProcess(State state,boolean init) {
         for(int i = 0; i < processes.length;i ++){
-            if(processes[x][i] == null || processes[x][i].isFinished){
+            if(processes[x][i] == null || processes[x][i].getIsFinished()){
+                if(init){
+                    state.init();
+                }
                 processes[x][i] = state;
                 Thread thread = new Thread(processes[x][i]);
                 thread.start();
@@ -133,7 +148,7 @@ public abstract class Engine extends RobotPrefs {
     }
 
     //Allows other states to end processes on the same index
-    public void endProcess(int index, State state) {
+    private void endProcess(int index, State state) {
         for (int i = 0; i < processes.length; i++) {
             if (processes[index][i] == state) {
                 processes[index][i].setFinished(true);
@@ -141,6 +156,40 @@ public abstract class Engine extends RobotPrefs {
                 break;
             }
         }
+    }
+
+    public void addState(State state){
+        if(processes.length/3 - stateX > 0) {
+
+            stateY = 0;
+
+            processes[stateX][stateY] = state;
+
+            stateY++;
+            stateX++;
+
+            Log.i(TAG, "ADDED NEW STATE AT : " + Integer.toString(stateX) );
+        }else{
+            expandingArray = true;
+            Log.i(TAG, "REALOCATED ARRAY!!!! WOOO!!!!");
+            State[][] temp = new State[processes.length*3][processes.length*3];
+            System.arraycopy(processes,0,temp,0,processes.length);
+            processes = temp;
+            Log.i(TAG, "FINISHED ALLOCATION, ARRAY SIZE NOW : " + Integer.toString(processes.length));
+
+            stateY = 0;
+
+            processes[stateX][stateY] = state;
+
+            stateY++;
+            stateX++;
+            expandingArray=false;
+        }
+    }
+
+    public void addStateProcess(State state){
+        processes[stateX-1][stateY] = state;
+        stateY ++;
     }
 
     public void addCacheData(int index, int layer, double data) {

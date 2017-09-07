@@ -11,13 +11,13 @@ import java.util.Date;
 
 public abstract class State implements Runnable  {
 
-    public DateFormat dateFormat = new SimpleDateFormat("HH:mm:ss:ms");
-    public Date date = new Date();
-    public volatile boolean isFinished = false;
-    public byte layer = 0;
+    private DateFormat dateFormat = new SimpleDateFormat("HH:mm:ss:ms");
+    private Date date = new Date();
+    private volatile boolean isFinished = false;
+    private byte layer = 0;
     public static String TAG = "PROGRAM.STATE";
     public Engine engine;
-    public Container container;
+    public Cont container;
 
 
 
@@ -41,4 +41,5 @@ public abstract class State implements Runnable  {
     public void setFinished(boolean value){
         isFinished = value;
     }
+    public boolean getIsFinished(){return isFinished;}
 }
